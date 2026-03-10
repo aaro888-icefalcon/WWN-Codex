@@ -8,10 +8,10 @@
    - Resolved by restructuring: `runtime/index.md` and phase `index.md` files replace the old docs index.
 
 2. **Create root-level navigation README** — COMPLETED
-   - Resolved: root `CLAUDE.md` + `runtime/index.md` + `development/index.md` serve as entry points.
+   - Resolved: root `AGENTS.md` + `runtime/index.md` + `development/index.md` serve as entry points.
 
 3. **Define canonical ownership by domain** — COMPLETED
-   - Resolved by phase-oriented layout: each phase directory has `CLAUDE.md` + `index.md` declaring ownership. Domain folders replaced by `runtime/phases/3-resolution/skills/{domain}/`.
+   - Resolved by phase-oriented layout: each phase directory has `AGENTS.md` + `index.md` declaring ownership. Domain folders replaced by `runtime/phases/3-resolution/skills/{domain}/`.
 
 4. **Reduce orphan docs through hub relinking** — COMPLETED
    - Resolved: phase `index.md` files + `phase-manifest.md` link all content. Every reference/lore/skill doc reachable from its phase hub.
@@ -25,4 +25,4 @@
 ## Exit Criteria (Original)
 - Zero broken internal markdown links from canonical hubs. — Largely achieved.
 - Every markdown page reachable from at least one index/hub. — Achieved.
-- Root README points to authoritative entry points. — Achieved via `CLAUDE.md`.
+- Root README points to authoritative entry points. — Achieved via `AGENTS.md`.

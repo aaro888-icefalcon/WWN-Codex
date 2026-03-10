@@ -17,7 +17,7 @@ Fix character creation so it: (1) uses Python tables as source of truth instead 
   - `--known-arts` and `--class-ability-overrides` params on `initialize-game`
   - Rewrite `game-initialization.md` to a 3-step GM-picks flow
   - Incremental concept save (write partial data to state.json after concept step)
-  - Update CLI docs (scripts CLAUDE.md)
+  - Update CLI docs (scripts AGENTS.md)
 
 - Out of scope:
   - Schema version bump (no new required fields)
@@ -38,7 +38,7 @@ Fix character creation so it: (1) uses Python tables as source of truth instead 
 - [ ] Add `--class-ability-overrides` param to allow dropping abilities (e.g., no Veteran's Luck)
 - [ ] Rewrite game-initialization.md to 3-step flow
 - [ ] Add incremental save instructions (write concept to state.json meta)
-- [ ] Update scripts/CLAUDE.md with new command
+- [ ] Update scripts/AGENTS.md with new command
 - [ ] Run tests
 
 ## Validation

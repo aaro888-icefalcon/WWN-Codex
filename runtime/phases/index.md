@@ -17,5 +17,5 @@ No domains registered yet. Create domains in `3-resolution/skills/<domain>/`.
 
 ## Navigation
 
-- Phase overview: `CLAUDE.md`
-- Each phase: `[phase]/CLAUDE.md` (instructions) + `[phase]/index.md` (inventory)
+- Phase overview: `AGENTS.md`
+- Each phase: `[phase]/AGENTS.md` (instructions) + `[phase]/index.md` (inventory)

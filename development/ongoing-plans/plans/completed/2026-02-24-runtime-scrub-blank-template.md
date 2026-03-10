@@ -16,7 +16,7 @@ Strip all Emergence: The Exile game-specific content from `runtime/` while prese
 
 - Delete all game-specific lore, references, skills, scripts, tables, and tests from `runtime/`
 - Delete all domain Python scripts and table modules (keep only CLI dispatcher + validators)
-- Genericize engine governance files (CLAUDE.md files, turn-loop, play-runbook, phase-manifest)
+- Genericize engine governance files (AGENTS.md files, turn-loop, play-runbook, phase-manifest)
 - Reset `state.json` to a minimal engine-only blank state
 - Genericize `state.schema.json` to remove Emergence-specific enums/values
 - Update all `index.md` navigation files to reflect post-scrub inventory
@@ -48,7 +48,7 @@ Strip game-specific language from governance/navigation files that remain. Conve
 Produce a minimal blank `state.json` and genericized `state.schema.json`.
 
 ### M4: Update navigation and registries
-Rebuild all `index.md` files, `phase-manifest.md`, and `scripts/CLAUDE.md` to reflect the scrubbed state.
+Rebuild all `index.md` files, `phase-manifest.md`, and `scripts/AGENTS.md` to reflect the scrubbed state.
 
 ### M5: Validate
 Run all applicable validators to confirm the blank template is internally consistent.
@@ -65,7 +65,7 @@ Run all applicable validators to confirm the blank template is internally consis
 
 **Phase 1 — Context Loading:**
 - [ ] Delete `runtime/phases/1-context-loading/lore/` (entire directory — setting, geography, factions, creatures, culture, locations)
-- [ ] Delete `runtime/phases/1-context-loading/references/` (hard-rules, gm-protocol, creation, awakening, aspects-archetypes) — **NOTE:** `hard-rules.md` content is game-specific; the *concept* of hard rules lives in runtime/CLAUDE.md and will be converted to a template
+- [ ] Delete `runtime/phases/1-context-loading/references/` (hard-rules, gm-protocol, creation, awakening, aspects-archetypes) — **NOTE:** `hard-rules.md` content is game-specific; the *concept* of hard rules lives in runtime/AGENTS.md and will be converted to a template
 - [ ] Delete `runtime/phases/1-context-loading/skills/` (lore-loading, new-game-setup, scene-context, state-loading)
 - [ ] Delete `runtime/phases/1-context-loading/assets/` (world-state-template)
 
@@ -108,7 +108,7 @@ Run all applicable validators to confirm the blank template is internally consis
 
 ### M2: Genericize engine files
 
-**runtime/CLAUDE.md:**
+**runtime/AGENTS.md:**
 - [ ] Strip game-specific Hard Rules content → replace with placeholder list directing new game to define its own
 - [ ] Strip Narrative Principles (alienation, scarcity, gritty tone) → replace with placeholder
 - [ ] Strip Forced Consequences wording → keep the concept as a template
@@ -121,8 +121,8 @@ Run all applicable validators to confirm the blank template is internally consis
 **runtime/play-runbook.md:**
 - [ ] Replace any Emergence-specific references with generic language (mostly already generic — audit and confirm)
 
-**Phase CLAUDE.md files (phases 1–6):**
-- [ ] Strip game-specific content from each phase CLAUDE.md
+**Phase AGENTS.md files (phases 1–6):**
+- [ ] Strip game-specific content from each phase AGENTS.md
 - [ ] Keep pipeline instructions and contract definitions
 - [ ] Add placeholder notes like `<!-- Define your game's [X] content here -->`
 
@@ -158,9 +158,9 @@ Run all applicable validators to confirm the blank template is internally consis
 - [ ] Update `runtime/index.md` — reflect post-scrub file inventory
 - [ ] Update `runtime/phases/index.md` — reflect empty phases with template guidance
 - [ ] Update `runtime/phases/phase-manifest.md` — remove all game-specific CLI/hook/script entries; keep phase structure
-- [ ] Update `runtime/scripts/CLAUDE.md` — remove deleted scripts from registry; keep validator entries
+- [ ] Update `runtime/scripts/AGENTS.md` — remove deleted scripts from registry; keep validator entries
 - [ ] Update `runtime/scripts/index.md` (if exists) — reflect reduced script set
-- [ ] Update `runtime/tests/CLAUDE.md` — reflect reduced test suite
+- [ ] Update `runtime/tests/AGENTS.md` — reflect reduced test suite
 - [ ] Update `runtime/tests/index.md` — reflect reduced test suite
 - [ ] Strip `emergence_cli.py` of game-specific subcommand imports — keep dispatcher skeleton with placeholder registration pattern
 
@@ -194,7 +194,7 @@ Run all applicable validators to confirm the blank template is internally consis
 
 1. `runtime/` contains only engine infrastructure: pipeline architecture, CLI dispatcher skeleton, validators, turn-loop contract, and blank state
 2. No Emergence-specific lore, mechanics, classes, enemies, or narrative content remains in `runtime/`
-3. All remaining `index.md` and `CLAUDE.md` files accurately describe the post-scrub state
+3. All remaining `index.md` and `AGENTS.md` files accurately describe the post-scrub state
 4. `state.json` validates against `state.schema.json`
 5. `development/` directory is completely untouched
 6. A git tag exists for restoring the pre-scrub Emergence game

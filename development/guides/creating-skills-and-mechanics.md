@@ -18,7 +18,7 @@ Each domain follows an identical structure:
 
 ```
 skills/<domain>/
-├── CLAUDE.md          — Operating instructions for this domain
+├── AGENTS.md          — Operating instructions for this domain
 ├── index.md           — Skill inventory and reference map
 ├── scripts/           — Python scripts (mechanics engine)
 ├── tables/            — Data tables (JSON/CSV)
@@ -163,7 +163,7 @@ Update `runtime/phases/phase-manifest.md`:
 
 ### Script registry
 
-Update `runtime/scripts/CLAUDE.md`:
+Update `runtime/scripts/AGENTS.md`:
 
 ```markdown
 | Command | Script | Domain |
@@ -214,9 +214,9 @@ Each domain follows the same pattern: script + skill doc + reference + test + re
 - [ ] Script created in `phases/3-resolution/skills/<domain>/scripts/`
 - [ ] Command registered in `emergence_cli.py`
 - [ ] Skill document created in owning phase
-- [ ] Phase `index.md` and `CLAUDE.md` updated
+- [ ] Phase `index.md` and `AGENTS.md` updated
 - [ ] `phase-manifest.md` updated
-- [ ] `scripts/CLAUDE.md` updated
+- [ ] `scripts/AGENTS.md` updated
 - [ ] Test created and registered
 - [ ] Validators pass: `python runtime/tests/run_all_tests.py 1`
 - [ ] Reference freshness updated if new reference docs created

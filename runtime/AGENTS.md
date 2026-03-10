@@ -48,7 +48,7 @@ Every turn follows this 6-phase pipeline in strict order:
 | 5. State Persistence | `phases/5-persistence/` | Update state.json |
 | 6. Validation | `phases/6-validation/` | Verify completeness |
 
-Each phase has its own `CLAUDE.md` with detailed instructions and an `index.md` with content inventory.
+Each phase has its own `AGENTS.md` with detailed instructions and an `index.md` with content inventory.
 
 ## Hard Rules (Template)
 

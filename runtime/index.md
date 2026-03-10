@@ -3,7 +3,7 @@
 ## Root Files
 | File | Purpose |
 |---|---|
-| `CLAUDE.md` | Runtime governance — GM turn pipeline |
+| `AGENTS.md` | Runtime governance — GM turn pipeline |
 | `turn-loop.md` | Turn loop contract — mandatory 8-step sequence |
 | `play-runbook.md` | Operational runbook — how to execute turns |
 | `state.json` | Canonical game state (single source of truth) |

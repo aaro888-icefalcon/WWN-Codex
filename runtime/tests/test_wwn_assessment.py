@@ -1102,18 +1102,18 @@ def assess_integration(d):
     else:
         d.fail("phase-manifest.md", "Not found")
 
-    # 10f. CLAUDE.md files in key directories
+    # 10f. AGENTS.md files in key directories
     claude_dirs = [
         RUNTIME_DIR,
         os.path.join(RUNTIME_DIR, "scripts"),
         os.path.join(RUNTIME_DIR, "tests"),
         os.path.join(RUNTIME_DIR, "phases"),
     ]
-    found = sum(1 for dd in claude_dirs if os.path.exists(os.path.join(dd, "CLAUDE.md")))
+    found = sum(1 for dd in claude_dirs if os.path.exists(os.path.join(dd, "AGENTS.md")))
     if found == len(claude_dirs):
-        d.ok(f"CLAUDE.md governance: {found}/{len(claude_dirs)} key directories")
+        d.ok(f"AGENTS.md governance: {found}/{len(claude_dirs)} key directories")
     else:
-        d.fail("CLAUDE.md governance", f"Only {found}/{len(claude_dirs)} directories")
+        d.fail("AGENTS.md governance", f"Only {found}/{len(claude_dirs)} directories")
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

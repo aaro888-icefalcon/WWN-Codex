@@ -142,7 +142,7 @@ Current hooks enforce some turn types but leave others unguarded:
 | State schema | **No** | Uses existing `meta` freeform object |
 | Phase references | No | — |
 | Output rendering | No | — |
-| Documentation | Yes (minor) | Phase 2 CLAUDE.md updated |
+| Documentation | Yes (minor) | Phase 2 AGENTS.md updated |
 
 **Surfaces touched: 3** (hooks, skills, manifest) — at scope limit, no phased PRs required.
 
@@ -381,7 +381,7 @@ python3 emergence_cli.py classify-action \
 - If called, reads the classification output and checks that all `required_cli` commands were subsequently executed
 - If any required CLI was skipped → **BLOCK** with specific missing command
 
-**Modified file: `runtime/scripts/CLAUDE.md`**
+**Modified file: `runtime/scripts/AGENTS.md`**
 - Add `classify-action` to the script registry with `runtime-safe: yes`
 
 **New file: `phases/2-action-interpretation/skills/mechanical-classification.md`**
@@ -398,7 +398,7 @@ python3 emergence_cli.py classify-action \
 | Validation/hooks | Yes | 1 new Stop hook |
 | Phase skills | Yes | New skill in Phase 2 |
 | Phase manifest | Yes | Phase 2 gains hook + CLI command |
-| Script registry | Yes | New subcommand in CLAUDE.md |
+| Script registry | Yes | New subcommand in AGENTS.md |
 
 **Surfaces touched: 4** — exceeds scope limit, requires phased PRs:
 - **PR 1:** `classify_action.py` + script registry + Phase 2 skill (3 surfaces: scripts, skills, manifest)
@@ -795,11 +795,11 @@ mv tmp.json state.json
 | `.claude/hooks/inject-state-context.sh` | Context injection — enhanced in Impl 2, 4, 5 |
 | `.claude/hooks/enforce-state-save.sh` | State persistence — audit data piggybacked here |
 | `.claude/settings.json` | Hook registration — new hooks registered here |
-| `runtime/phases/2-action-interpretation/CLAUDE.md` | Currently advisory — gains enforcement in all implementations |
+| `runtime/phases/2-action-interpretation/AGENTS.md` | Currently advisory — gains enforcement in all implementations |
 | `runtime/phases/2-action-interpretation/skills/action-classification.md` | Current advisory skill — supplemented by new skill |
 | `runtime/phases/phase-manifest.md` | Phase 2 entry updated in all implementations |
 | `runtime/turn-loop.md` | Turn protocol — not modified but referenced |
 | `runtime/phases/1-context-loading/references/hard-rules.md` | Rule #5 (scene-pressure mandate) |
 | `runtime/phases/1-context-loading/references/gm-protocol.md` | §When NOT to Roll, §Free Narration Pressure |
-| `runtime/scripts/CLAUDE.md` | Script registry — updated in Impl 3 only |
+| `runtime/scripts/AGENTS.md` | Script registry — updated in Impl 3 only |
 | `runtime/phases/3-resolution/skills/exploration/scene-pressure.md` | Scene-pressure skill — referenced by all implementations |

@@ -15,11 +15,11 @@ This page is the permanent starting point for contributors. Choose your mode, th
 
 ## Mode selection
 
-- **Development mode**: use when changing code, schemas, docs, tests, scripts, or CI behavior. Governing instructions: [root CLAUDE.md](CLAUDE.md).
-- **Runtime mode**: use when executing game turns and runtime operations without making system changes. Governing instructions: [runtime CLAUDE.md](runtime/CLAUDE.md).
+- **Development mode**: use when changing code, schemas, docs, tests, scripts, or CI behavior. Governing instructions: [root AGENTS.md](AGENTS.md).
+- **Runtime mode**: use when executing game turns and runtime operations without making system changes. Governing instructions: [runtime AGENTS.md](runtime/AGENTS.md).
 
 ## Governance
 
-- **CLAUDE.md** files define behavioral and validation constraints per scope. One per directory, auto-loaded.
+- **AGENTS.md** files define behavioral and validation constraints per scope. One per directory, auto-loaded.
 - **index.md** files are for navigation and content discovery.
-- See `CLAUDE.md` for full file conventions.
+- See `AGENTS.md` for full file conventions.

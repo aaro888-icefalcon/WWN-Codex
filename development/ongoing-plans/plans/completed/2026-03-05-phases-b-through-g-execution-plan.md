@@ -32,9 +32,9 @@
 ### Not Yet Completed (Phase A Gaps)
 - **A-GAP-1:** Zone-based combat positioning not implemented in combat.py or state schema
 - **A-GAP-2:** No end-to-end turn loop test (manual or automated)
-- **A-GAP-3:** Phases 2, 4, 5, 6 have CLAUDE.md stubs but no operational content (no skills, no references, no assets)
+- **A-GAP-3:** Phases 2, 4, 5, 6 have AGENTS.md stubs but no operational content (no skills, no references, no assets)
 - **A-GAP-4:** phase-manifest.md not updated with implemented commands/references
-- **A-GAP-5:** Script registry (scripts/CLAUDE.md) lists emergence_cli.py commands but domain scripts aren't registered
+- **A-GAP-5:** Script registry (scripts/AGENTS.md) lists emergence_cli.py commands but domain scripts aren't registered
 
 ### Pre-Phase-B Remediation (Required)
 Before expanding into new mechanics, the existing foundation must close these gaps. This is "Phase A.5":
@@ -164,9 +164,9 @@ A mage character can prepare spells, cast them via CLI, expend Effort, and fight
 
 - [ ] **B-INT-1:** Create `phases/3-resolution/skills/core/magic-resolution.md` skill file (9-section format)
 - [ ] **B-INT-2:** Update Phase 3 index.md with magic domain
-- [ ] **B-INT-3:** Update Phase 3 CLAUDE.md routing table
+- [ ] **B-INT-3:** Update Phase 3 AGENTS.md routing table
 - [ ] **B-INT-4:** Update phase-manifest.md Phase 3 cli_commands and references
-- [ ] **B-INT-5:** Update scripts/CLAUDE.md script registry with cast-spell, encounter, combat-round
+- [ ] **B-INT-5:** Update scripts/AGENTS.md script registry with cast-spell, encounter, combat-round
 - [ ] **B-INT-6:** Update Phase 2 action-classification.md and cli-reference.md with new commands
 - [ ] **B-INT-7:** Add magic narrative treatments to Phase 4 narration-mappings.md
 
@@ -301,9 +301,9 @@ A character can travel between locations, encounter wilderness hazards, explore 
 - [ ] **C-INT-1:** Create exploration domain directory with index.md
 - [ ] **C-INT-2:** Create world-building domain directory with index.md
 - [ ] **C-INT-3:** Create skill files for travel, scene generation, treasure, world tick
-- [ ] **C-INT-4:** Update Phase 3 index.md + CLAUDE.md with new domains
+- [ ] **C-INT-4:** Update Phase 3 index.md + AGENTS.md with new domains
 - [ ] **C-INT-5:** Update phase-manifest.md with new cli_commands and references
-- [ ] **C-INT-6:** Update scripts/CLAUDE.md registry
+- [ ] **C-INT-6:** Update scripts/AGENTS.md registry
 - [ ] **C-INT-7:** Update Phase 2 action-classification.md + cli-reference.md
 - [ ] **C-INT-8:** Add exploration/travel narrative treatments to Phase 4 narration-mappings.md
 
@@ -427,9 +427,9 @@ NPCs have persistent personalities and voice, factions pursue goals autonomously
 
 - [ ] **D-INT-1:** Create social domain directory with index.md
 - [ ] **D-INT-2:** Create skill files for NPC generation, faction turn, reaction roll
-- [ ] **D-INT-3:** Update Phase 3 index.md + CLAUDE.md
+- [ ] **D-INT-3:** Update Phase 3 index.md + AGENTS.md
 - [ ] **D-INT-4:** Update phase-manifest.md
-- [ ] **D-INT-5:** Update scripts/CLAUDE.md registry
+- [ ] **D-INT-5:** Update scripts/AGENTS.md registry
 - [ ] **D-INT-6:** Update Phase 2 action-classification.md + cli-reference.md
 - [ ] **D-INT-7:** Add social narrative treatments to Phase 4 narration-mappings.md
 - [ ] **D-INT-8:** Wire consequence tracker into Phase 5 state-persistence.md
@@ -539,10 +539,10 @@ Phases B-D add *mechanics*. Phase E adds the *presentation layer* — how those 
 
 ## Integration Touchpoints
 
-- [ ] **E-INT-1:** Phase 4 CLAUDE.md rewritten from stub to full operational instructions
+- [ ] **E-INT-1:** Phase 4 AGENTS.md rewritten from stub to full operational instructions
 - [ ] **E-INT-2:** Phase 4 index.md updated with all new assets and references
 - [ ] **E-INT-3:** phase-manifest.md Phase 4 section populated
-- [ ] **E-INT-4:** Phase 6 CLAUDE.md updated with narration grounding check
+- [ ] **E-INT-4:** Phase 6 AGENTS.md updated with narration grounding check
 - [ ] **E-INT-5:** Hard rules updated: "Narrative must follow the Latter Earth voice guide"
 - [ ] **E-INT-6:** GM protocol updated with drama budget rules
 
@@ -630,7 +630,7 @@ The complete Latter Earth setting is extractable and loadable. Any canonical WWN
 - [ ] **F-INT-1:** Create `phases/1-context-loading/lore/index.md` — master lore inventory
 - [ ] **F-INT-2:** Create `phases/1-context-loading/lore/nations/index.md` — nation file listing
 - [ ] **F-INT-3:** Create lore-loading skill in Phase 1
-- [ ] **F-INT-4:** Update Phase 1 CLAUDE.md with lore loading instructions
+- [ ] **F-INT-4:** Update Phase 1 AGENTS.md with lore loading instructions
 - [ ] **F-INT-5:** Update Phase 1 index.md
 - [ ] **F-INT-6:** Update phase-manifest.md Phase 1 section with lore references
 
@@ -733,9 +733,9 @@ Extend the game with optional content for experienced play: new classes, heroic-
 ## Integration Touchpoints
 
 - [ ] **G-INT-1:** Create downtime domain directory with index.md
-- [ ] **G-INT-2:** Update all Phase 3 indexes and CLAUDE.md
+- [ ] **G-INT-2:** Update all Phase 3 indexes and AGENTS.md
 - [ ] **G-INT-3:** Update phase-manifest.md
-- [ ] **G-INT-4:** Update scripts/CLAUDE.md
+- [ ] **G-INT-4:** Update scripts/AGENTS.md
 - [ ] **G-INT-5:** Update Phase 2 action-classification.md + cli-reference.md
 - [ ] **G-INT-6:** Update character creation references in Phase 1
 

@@ -3,7 +3,7 @@
 
 Checks:
 - required hub/index files exist (runtime-relative and repo-root-relative)
-- phase CLAUDE.md and index.md files exist for all 6 pipeline phases
+- phase AGENTS.md and index.md files exist for all 6 pipeline phases
 - domain index files exist for Phase 3 skill sub-groups
 - archived outlier pointer exists after relocation
 - schema-doc sync: schema files exist, migration notes reference current version,
@@ -20,34 +20,34 @@ REPO_ROOT = ROOT.parent
 
 # Files that must exist under runtime/
 REQUIRED_RUNTIME_FILES = [
-    "CLAUDE.md",
+    "AGENTS.md",
     "index.md",
     "turn-loop.md",
     "play-runbook.md",
-    "scripts/CLAUDE.md",
+    "scripts/AGENTS.md",
     "scripts/index.md",
     "tests/index.md",
-    "phases/CLAUDE.md",
+    "phases/AGENTS.md",
     "phases/index.md",
     "phases/phase-manifest.md",
     # Phase 1
-    "phases/1-context-loading/CLAUDE.md",
+    "phases/1-context-loading/AGENTS.md",
     "phases/1-context-loading/index.md",
     # Phase 2
-    "phases/2-action-interpretation/CLAUDE.md",
+    "phases/2-action-interpretation/AGENTS.md",
     "phases/2-action-interpretation/index.md",
     # Phase 3
-    "phases/3-resolution/CLAUDE.md",
+    "phases/3-resolution/AGENTS.md",
     "phases/3-resolution/index.md",
     # Phase 3 domains (populated per-game; no required defaults)
     # Phase 4
-    "phases/4-narrative/CLAUDE.md",
+    "phases/4-narrative/AGENTS.md",
     "phases/4-narrative/index.md",
     # Phase 5
-    "phases/5-persistence/CLAUDE.md",
+    "phases/5-persistence/AGENTS.md",
     "phases/5-persistence/index.md",
     # Phase 6
-    "phases/6-validation/CLAUDE.md",
+    "phases/6-validation/AGENTS.md",
     "phases/6-validation/index.md",
 ]
 

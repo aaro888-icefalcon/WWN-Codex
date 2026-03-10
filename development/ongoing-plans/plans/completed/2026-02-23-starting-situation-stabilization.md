@@ -356,7 +356,7 @@ Replace `no_central_authority` with `civil_authority_strained` as the Day 1 defa
 ## PR-A: Lore & World Situation
 
 **Surfaces:** Phase 1 lore references, Phase 3 world-building tables, State data
-**Note on Phase 3 surface:** Task A6 modifies `world_situation.py` (a Phase 3 world-building table). This is acknowledged in the surface label. No Phase 3 skill file, CLAUDE.md, or phase-manifest changes are required in this PR — the table modification is self-contained and covered by existing Phase 3 CLAUDE.md domain references.
+**Note on Phase 3 surface:** Task A6 modifies `world_situation.py` (a Phase 3 world-building table). This is acknowledged in the surface label. No Phase 3 skill file, AGENTS.md, or phase-manifest changes are required in this PR — the table modification is self-contained and covered by existing Phase 3 AGENTS.md domain references.
 
 ### Task Breakdown
 
@@ -391,7 +391,7 @@ Replace `no_central_authority` with `civil_authority_strained` as the Day 1 defa
 |---|---|
 | 1. Skill file | No skill changes in this PR (lore-only) |
 | 2. Phase index.md | Update Phase 1 index.md locations.md description (A8) |
-| 3. Phase CLAUDE.md | No changes needed (lore file count unchanged at 14; Phase 3 CLAUDE.md world-building domain entry doesn't enumerate table files) |
+| 3. Phase AGENTS.md | No changes needed (lore file count unchanged at 14; Phase 3 AGENTS.md world-building domain entry doesn't enumerate table files) |
 | 4. Phase-manifest.md | No changes needed (lore glob `factions-nyc/*` still valid; no new lore directories) |
 | 5. Hook enforcement | No hook changes |
 | 6. Script registry | No new CLI commands |
@@ -439,7 +439,7 @@ Replace `no_central_authority` with `civil_authority_strained` as the Day 1 defa
 |---|---|
 | 1. Skill file | Update new-game-setup.md (B4) |
 | 2. Phase index.md | Update Phase 1 index.md: change `new-game-setup.md` description from "Session zero: generate world, character, initial state" to "New campaign initialization: status screen, character creation, world generation" |
-| 3. Phase CLAUDE.md | Update Phase 1 CLAUDE.md Skills routing table: update `new-game-setup` trigger from "Session zero / new campaign" to "New campaign initialization (status screen model) / new campaign" |
+| 3. Phase AGENTS.md | Update Phase 1 AGENTS.md Skills routing table: update `new-game-setup` trigger from "Session zero / new campaign" to "New campaign initialization (status screen model) / new campaign" |
 | 4. Phase-manifest.md | Verify `awakening` description in Phase 1 references still accurate after rewrite. If scope has changed materially, update the manifest entry description. |
 | 5. Hook enforcement | No hook changes |
 | 6. Script registry | No new CLI commands in this PR (new-game CLI exists only after PR-C) |
@@ -519,7 +519,7 @@ Register in dispatch table: `"new-game": cmd_new_game`
   - Add `new-game` command docs in World & Session section
   - Update `character` with `--stat-order`
   - Update Regions argument list: replace `crystal, shadow` (lore-only, not valid terrain types) with the accurate list `forest, plains, mountain, swamp, ruins, urban, suburban, industrial`
-- [ ] C7. Update `runtime/scripts/CLAUDE.md` — add `new-game` to the CLI commands table in the script registry
+- [ ] C7. Update `runtime/scripts/AGENTS.md` — add `new-game` to the CLI commands table in the script registry
 - [ ] C8. Update `runtime/phases/phase-manifest.md`:
   - Phase 1 `cli_commands`: change from "(none — this phase reads state and lore files)" to "new-game (campaign initialization wrapper — invokes new-game-setup skill)"
   - Phase 3 exploration domain: note `suburban` and `industrial` terrain types added to scene.py
@@ -547,10 +547,10 @@ Register in dispatch table: `"new-game": cmd_new_game`
 |---|---|
 | 1. Skill file | Update new-game-setup.md (C9) — promotes `new-game` to primary invocation |
 | 2. Phase index.md | No changes needed (Phase 1 index.md description updated in PR-B) |
-| 3. Phase CLAUDE.md | No changes needed (Phase 1 CLAUDE.md Skills table updated in PR-B; no further changes for CLI implementation) |
+| 3. Phase AGENTS.md | No changes needed (Phase 1 AGENTS.md Skills table updated in PR-B; no further changes for CLI implementation) |
 | 4. Phase-manifest.md | Update Phase 1 cli_commands: add `new-game` (C8); Phase 3 exploration: note suburban/industrial terrain types (C8) |
 | 5. Hook enforcement | No hook changes |
-| 6. Script registry | Update scripts/CLAUDE.md with `new-game` (C7) |
+| 6. Script registry | Update scripts/AGENTS.md with `new-game` (C7) |
 | 7. Tests | New test cases (C17), run existing suite (C10, C13, C14, C15, C16) |
 
 ---
@@ -574,7 +574,7 @@ Register in dispatch table: `"new-game": cmd_new_game`
 15. Manual review: cli-reference.md Regions argument list updated to `forest, plains, mountain, swamp, ruins, urban, suburban, industrial` (crystal/shadow removed)
 16. Manual review: CLI reference doc updated with new-game command
 17. Manual review: phase-manifest.md Phase 1 cli_commands includes `new-game`; Phase 3 exploration notes suburban/industrial terrain
-18. Manual review: scripts/CLAUDE.md, Phase 1 index.md, Phase 1 CLAUDE.md all updated
+18. Manual review: scripts/AGENTS.md, Phase 1 index.md, Phase 1 AGENTS.md all updated
 19. Manual review: new neighborhoods in world_situation.py all receive initial tags from `generate_initial_world_situation()`
 20. Manual review: `new-game-setup.md` has `new-game` as primary invocation with Manual Alternative section and usage guidance
 
@@ -611,7 +611,7 @@ Register in dispatch table: `"new-game": cmd_new_game`
 9. Casualty model documented: ~15% in first month, ~85% survive
 10. State validates, character script tests pass, full test suite passes, `new-game` CLI runs end-to-end
 11. CLI reference doc updated with all changes; `crystal`/`shadow` removed from Regions argument list
-12. All 7 integration touchpoints addressed per PR (phase-manifest, script registry, phase index.md, phase CLAUDE.md verified)
+12. All 7 integration touchpoints addressed per PR (phase-manifest, script registry, phase index.md, phase AGENTS.md verified)
 13. New tag definitions (`civil_authority_strained`, `consolidated_authority`) use list format for `effects` field, consistent with existing `NYC_GEOPOLITICAL_TAGS` entries
 14. `no_central_authority` removed from initial state (state.json + `generate_initial_world_situation()`) — definition retained in `NYC_GEOPOLITICAL_TAGS` as valid escalation target
 15. New neighborhoods receive initial tags from `generate_initial_world_situation()`

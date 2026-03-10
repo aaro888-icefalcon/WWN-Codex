@@ -94,7 +94,7 @@ All 14 CLI commands work correctly and produce well-structured JSON output:
 - All 21 entry points across 11 Python modules verified
 - State.json contains all 25 required schema fields
 - All 4 validators pass (state, docs structure, reference freshness, canonical references)
-- CLAUDE.md governance files in all 4 key runtime directories
+- AGENTS.md governance files in all 4 key runtime directories
 - Hard rules and GM protocol documents substantial and present
 
 ---

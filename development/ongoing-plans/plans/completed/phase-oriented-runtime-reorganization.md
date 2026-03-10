@@ -12,13 +12,13 @@ The `runtime/` directory is organized by **domain** (references/, scripts/, tabl
 
 This mismatch causes three concrete problems:
 1. **Context waste**: Claude loads full reference files when it needs 20% of each
-2. **Hook imprecision**: When hooks block, they point to generic CLAUDE.md sections instead of the specific skill/step that was violated
+2. **Hook imprecision**: When hooks block, they point to generic AGENTS.md sections instead of the specific skill/step that was violated
 3. **Workflow fragility**: The turn protocol is spread across 6+ files; each new session must reconstruct the phase workflow from scratch
 
 ### Solution
 
 Create `runtime/phases/` — a **phase-oriented navigation overlay** with one directory per GM turn phase. Each phase directory contains:
-- `CLAUDE.md` — phase-specific operating instructions (auto-loaded when Claude reads into that directory)
+- `AGENTS.md` — phase-specific operating instructions (auto-loaded when Claude reads into that directory)
 - `index.md` — skill inventory and reference/hook map
 - `skills/*.md` — one file per mechanical step, with exact CLI commands, canonical reference pointers, hook enforcement lists, and failure prevention tables
 
@@ -27,7 +27,7 @@ This is **strictly additive** — no existing files are moved, renamed, or delet
 ### Outcome
 
 - Claude can load exactly the right 200-300 lines of focused context per phase instead of scanning 1500+ lines across multiple files
-- Hooks can point to specific skill files when they block (e.g., "See `phases/combat/skills/turn-start.md`" instead of "See CLAUDE.md §7")
+- Hooks can point to specific skill files when they block (e.g., "See `phases/combat/skills/turn-start.md`" instead of "See AGENTS.md §7")
 - New sessions can pick up the phase workflow immediately from structured skill files
 - The turn protocol becomes navigable by phase rather than reconstructed from first principles each time
 
@@ -69,12 +69,12 @@ No content duplication. Skill files contain instruction summaries + pointers.
 
 ```
 runtime/phases/                          # Phase-oriented navigation overlay
-    CLAUDE.md                            # Phase system overview + detection table
+    AGENTS.md                            # Phase system overview + detection table
     index.md                             # Phase inventory and router
     phase-manifest.md                    # Machine-readable: phase → hooks → CLI → refs
 
     exploration/
-        CLAUDE.md                        # Exploration pre-response checklist
+        AGENTS.md                        # Exploration pre-response checklist
         index.md                         # Skill inventory + reference/hook map
         skills/
             scene-generation.md          # Run `scene` CLI, zone setup, atmosphere
@@ -85,7 +85,7 @@ runtime/phases/                          # Phase-oriented navigation overlay
             creature-preloading.md       # `creature`/`creatures` when threat within 2 rounds
 
     combat/
-        CLAUDE.md                        # Combat pre-response checklist
+        AGENTS.md                        # Combat pre-response checklist
         index.md                         # Skill inventory + reference/hook map
         skills/
             combat-setup.md              # PRE_COMBAT: enemy gen, initiative, zones
@@ -97,7 +97,7 @@ runtime/phases/                          # Phase-oriented navigation overlay
             combat-exit.md              # Victory/defeat/flee, loot, transition
 
     social/
-        CLAUDE.md                        # Social pre-response checklist
+        AGENTS.md                        # Social pre-response checklist
         index.md                         # Skill inventory + reference/hook map
         skills/
             npc-agenda-check.md          # `npc-agenda` CLI: escalation ladder
@@ -107,7 +107,7 @@ runtime/phases/                          # Phase-oriented navigation overlay
             diplomacy.md                # `diplomacy` CLI: inter-faction relations
 
     downtime/
-        CLAUDE.md                        # Downtime pre-response checklist
+        AGENTS.md                        # Downtime pre-response checklist
         index.md                         # Skill inventory + reference/hook map
         skills/
             rest.md                     # Short/long rest mechanics, recovery formulas
@@ -116,7 +116,7 @@ runtime/phases/                          # Phase-oriented navigation overlay
             downtime-activities.md       # `downtime` CLI: general resolution
 
     scene-transition/
-        CLAUDE.md                        # Scene transition pre-response checklist
+        AGENTS.md                        # Scene transition pre-response checklist
         index.md                         # Skill inventory + reference/hook map
         skills/
             world-tick.md               # `world-tick` CLI: faction turns, threats
@@ -127,7 +127,7 @@ runtime/phases/                          # Phase-oriented navigation overlay
             adventure-hook.md           # `adventure` CLI: adventure hooks from world state
 
     cross-cutting/
-        CLAUDE.md                        # Always-applicable instructions
+        AGENTS.md                        # Always-applicable instructions
         index.md                         # Skill inventory
         skills/
             pre-turn-validation.md       # State validation, phase identification
@@ -137,15 +137,15 @@ runtime/phases/                          # Phase-oriented navigation overlay
             reference-freshness.md       # Pre-session freshness check
 ```
 
-**Total new files: 48** (7 CLAUDE.md + 7 index.md + 33 skill files + 1 manifest)
+**Total new files: 48** (7 AGENTS.md + 7 index.md + 33 skill files + 1 manifest)
 
 ---
 
 ## File Templates
 
-### Template A: Phase CLAUDE.md
+### Template A: Phase AGENTS.md
 
-Every phase CLAUDE.md follows this exact structure. It must be **under 40 lines** (Map Not Manual principle). Example for combat:
+Every phase AGENTS.md follows this exact structure. It must be **under 40 lines** (Map Not Manual principle). Example for combat:
 
 ```markdown
 # Combat Phase — Operating Instructions
@@ -291,11 +291,11 @@ Trigger: [One-sentence: when this skill activates]
 
 ### Purpose
 
-Create the complete directory structure with all CLAUDE.md and index.md files. No skill files yet — this establishes the navigation framework.
+Create the complete directory structure with all AGENTS.md and index.md files. No skill files yet — this establishes the navigation framework.
 
 ### Files to create
 
-**1. `runtime/phases/CLAUDE.md`**
+**1. `runtime/phases/AGENTS.md`**
 
 Content: Phase system overview. Phase detection table mapping each phase to its state.json detection criteria and directory path. Relationship explanation (overlay, not relocation). Pointer to phase-manifest.md.
 
@@ -306,7 +306,7 @@ Key content elements:
 
 **2. `runtime/phases/index.md`**
 
-Content: Phase inventory table with columns (Phase, Directory, Skill Count, CLI Commands). Navigation section with pointers to each phase CLAUDE.md and the manifest.
+Content: Phase inventory table with columns (Phase, Directory, Skill Count, CLI Commands). Navigation section with pointers to each phase AGENTS.md and the manifest.
 
 **3. `runtime/phases/phase-manifest.md`**
 
@@ -358,7 +358,7 @@ Content: Machine-readable mapping of each phase to its hooks, CLI commands, cano
 - skills_dir: cross-cutting/skills/
 ```
 
-**4-9. Phase CLAUDE.md files** (6 files, one per phase directory)
+**4-9. Phase AGENTS.md files** (6 files, one per phase directory)
 
 Each follows Template A above. Phase-specific content:
 
@@ -378,7 +378,7 @@ Each follows Template B above. Skill tables will be empty initially (just header
 ### Validation
 
 - All directories exist
-- All CLAUDE.md files are under 40 lines
+- All AGENTS.md files are under 40 lines
 - All referenced paths resolve to existing files
 - `python runtime/tests/run_all_tests.py 1` passes
 - `python runtime/scripts/validate_reference_freshness.py` passes
@@ -396,7 +396,7 @@ Cross-cutting skills (especially move-resolution) are used by every phase. Comba
 **`cross-cutting/skills/pre-turn-validation.md`**
 - Trigger: Start of every turn
 - Steps: Read state.json → validate-state CLI → identify phase from state → check reference freshness (first turn only)
-- References: hard-rules.md §Pre-Response Checklist, runtime/CLAUDE.md §Truth Model
+- References: hard-rules.md §Pre-Response Checklist, runtime/AGENTS.md §Truth Model
 - Hooks: inject-state-context.sh, validate-state-write.sh
 
 **`cross-cutting/skills/move-resolution.md`**
@@ -417,7 +417,7 @@ Cross-cutting skills (especially move-resolution) are used by every phase. Comba
 **`cross-cutting/skills/state-persistence.md`**
 - Trigger: After every mechanics resolution
 - Steps: (1) Identify all state changes (HP, conditions, clocks, NPCs, inventory, chronicle), (2) write changes to state.json, (3) run validate-state CLI, (4) if validation fails HALT, (5) write turn receipt to turn_receipts/, (6) run validate-turn-receipt CLI
-- References: turn-loop.md §Steps 5-8, runtime/CLAUDE.md §Mandatory Turn Protocol
+- References: turn-loop.md §Steps 5-8, runtime/AGENTS.md §Mandatory Turn Protocol
 - Hooks: enforce-state-save.sh, validate-state-write.sh
 
 **`cross-cutting/skills/reference-freshness.md`**
@@ -432,7 +432,7 @@ Cross-cutting skills (especially move-resolution) are used by every phase. Comba
 - Steps: (1) Run `creature` or `creatures` CLI for ALL enemies, (2) record initiative (from CLI output), (3) establish zone layout (from scene or custom), (4) display initial combat state in MANDATORY format, (5) determine first actor by initiative
 - References: combat.md §Initiative, §Zone Combat; hard-rules.md §8-9
 - Hooks: validate-combat-state.sh
-- CRITICAL: Include the exact MANDATORY combat display format from CLAUDE.md §3
+- CRITICAL: Include the exact MANDATORY combat display format from AGENTS.md §3
 
 **`combat/skills/turn-start.md`**
 - Trigger: Any entity's turn begins
@@ -669,16 +669,16 @@ Cross-cutting skills (especially move-resolution) are used by every phase. Comba
 
 ## Wave 5: Integration (modifications to existing files)
 
-### 5.1: Add phase navigation to `runtime/CLAUDE.md`
+### 5.1: Add phase navigation to `runtime/AGENTS.md`
 
 Add a new section (3-5 lines) pointing to the phase system:
 
 ```markdown
 ## 8) Phase Navigation
 
-Turn workflow is organized by phase in `phases/`. Load the relevant phase CLAUDE.md
+Turn workflow is organized by phase in `phases/`. Load the relevant phase AGENTS.md
 for pre-response checklists and skill files:
-- Phase overview and detection: `phases/CLAUDE.md`
+- Phase overview and detection: `phases/AGENTS.md`
 - Phase manifest (hooks → CLI → references): `phases/phase-manifest.md`
 ```
 
@@ -686,12 +686,12 @@ Insert after the current §7 (Operational runbooks) section.
 
 ### 5.2: Update hook error messages
 
-For each of the 11 hooks in `.claude/hooks/`, update the error message strings to reference the specific skill file instead of generic CLAUDE.md sections. **No logic changes — only string updates.**
+For each of the 11 hooks in `.claude/hooks/`, update the error message strings to reference the specific skill file instead of generic AGENTS.md sections. **No logic changes — only string updates.**
 
 | Hook | Current message points to | New message points to |
 |------|--------------------------|----------------------|
-| `validate-combat-state.sh` | `runtime/CLAUDE.md §3` | `runtime/phases/combat/skills/player-turn.md` |
-| `validate-combat-round-lifecycle.sh` | `runtime/CLAUDE.md §7` | `runtime/phases/combat/skills/turn-start.md` and `round-end.md` |
+| `validate-combat-state.sh` | `runtime/AGENTS.md §3` | `runtime/phases/combat/skills/player-turn.md` |
+| `validate-combat-round-lifecycle.sh` | `runtime/AGENTS.md §7` | `runtime/phases/combat/skills/turn-start.md` and `round-end.md` |
 | `validate-enemy-behavior.sh` | Generic | `runtime/phases/combat/skills/enemy-turn.md` |
 | `validate-forced-consequence.sh` | Generic | `runtime/phases/cross-cutting/skills/forced-consequence.md` |
 | `validate-gm-response.sh` violation 1 | `emergence_cli.py move` | `runtime/phases/cross-cutting/skills/move-resolution.md` |
@@ -705,7 +705,7 @@ Add to §1 (Placement rules):
 
 ```markdown
 4. Phase navigation overlays belong in `phases/*`:
-   - Phase CLAUDE.md: operating instructions (< 40 lines)
+   - Phase AGENTS.md: operating instructions (< 40 lines)
    - Phase index.md: skill inventory and reference map
    - Phase skills/*.md: instruction files that REFERENCE canonical sources
    - NEVER duplicate canonical content in skill files — reference with §section pointers
@@ -715,7 +715,7 @@ Add to §3 (Structural PR checklist):
 
 ```markdown
 - [ ] Phase skill files reference canonical sources, not duplicate them.
-- [ ] Phase CLAUDE.md files are under 40 lines.
+- [ ] Phase AGENTS.md files are under 40 lines.
 - [ ] New skills placed in correct phase directory (or cross-cutting if multi-phase).
 ```
 
@@ -725,7 +725,7 @@ Add to §3 (Structural PR checklist):
 - Reference freshness: `python runtime/scripts/validate_reference_freshness.py`
 - Verify all paths in all 33 skill files resolve to existing files
 - Verify no hook logic changes (only string changes in error messages)
-- Verify `runtime/CLAUDE.md` stays within reasonable size (< 150 lines total)
+- Verify `runtime/AGENTS.md` stays within reasonable size (< 150 lines total)
 
 ---
 
@@ -756,12 +756,12 @@ Instead, use §section pointers:
 
 If a referenced section doesn't have a clear heading to point to, that's a signal to add one to the canonical file — not to copy the content into the skill file.
 
-### Rule 3: CLAUDE.md Size Budget
+### Rule 3: AGENTS.md Size Budget
 
-Phase CLAUDE.md files: **40 lines max**
-Root runtime CLAUDE.md: **150 lines max**
+Phase AGENTS.md files: **40 lines max**
+Root runtime AGENTS.md: **150 lines max**
 
-If a CLAUDE.md grows beyond its budget, the excess belongs in:
+If a AGENTS.md grows beyond its budget, the excess belongs in:
 - A new skill file (if it's a procedural instruction)
 - A referenced document (if it's a rule or policy)
 - The index.md (if it's inventory/navigation content)
@@ -848,7 +848,7 @@ This promotion is NOT part of the current plan — it's guidance for when the `.
 | `runtime/references/mechanics.md` | cross-cutting — core math (crit range, stat modifiers) |
 | `runtime/references/progression.md` | downtime — level-up, evolution |
 | `runtime/references/evolutions-core.md` | downtime — evolution options |
-| `runtime/CLAUDE.md` | combat — §3 combat display format, §7 combat protocol; cross-cutting — §Truth Model, §Mandatory Turn Protocol |
+| `runtime/AGENTS.md` | combat — §3 combat display format, §7 combat protocol; cross-cutting — §Truth Model, §Mandatory Turn Protocol |
 | `runtime/docs/workflows/turn-loop.md` | cross-cutting — 8-stage turn protocol |
 | `runtime/docs/scripts/index.md` | ALL — CLI command registry |
 
@@ -856,7 +856,7 @@ This promotion is NOT part of the current plan — it's guidance for when the `.
 
 | File | Change |
 |------|--------|
-| `runtime/CLAUDE.md` | Add §8 Phase Navigation (3-5 lines) |
+| `runtime/AGENTS.md` | Add §8 Phase Navigation (3-5 lines) |
 | `development/repo-maintenance-policy.md` | Add phase-related placement and PR checklist items |
 | `.claude/hooks/validate-gm-response.sh` | Update 4 error message strings |
 | `.claude/hooks/validate-combat-state.sh` | Update 1 error message string |
@@ -878,7 +878,7 @@ python runtime/tests/run_all_tests.py 1
 python runtime/scripts/validate_reference_freshness.py
 
 # 3. Verify all phase directories exist
-ls -la runtime/phases/*/CLAUDE.md
+ls -la runtime/phases/*/AGENTS.md
 ls -la runtime/phases/*/index.md
 ls -la runtime/phases/*/skills/*.md
 
@@ -889,9 +889,9 @@ find runtime/phases/ -type f | wc -l
 # Search for multi-line blocks that appear in both references/ and phases/
 # This is a manual check — look for copy-pasted paragraphs
 
-# 6. Verify CLAUDE.md size limits
-wc -l runtime/phases/*/CLAUDE.md  # Each should be < 40 lines
-wc -l runtime/CLAUDE.md            # Should be < 150 lines
+# 6. Verify AGENTS.md size limits
+wc -l runtime/phases/*/AGENTS.md  # Each should be < 40 lines
+wc -l runtime/AGENTS.md            # Should be < 150 lines
 
 # 7. Verify hook changes are string-only (no logic changes)
 git diff .claude/hooks/ | grep -c "^[+-].*if\|^[+-].*then\|^[+-].*fi\|^[+-].*exit"

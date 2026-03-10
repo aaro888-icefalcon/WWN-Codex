@@ -22,7 +22,7 @@ This policy keeps the phase-oriented runtime architecture stable.
    - Phase 6 (`6-validation`): response gate, validators
 3. Entry point scripts stay in `runtime/scripts/`; domain modules live in Phase 3.
 4. Phase governance files:
-   - Phase CLAUDE.md: operating instructions (< 40 lines)
+   - Phase AGENTS.md: operating instructions (< 40 lines)
    - Phase index.md: skill inventory and reference map
    - Phase skills/*.md: instruction files that REFERENCE canonical sources
    - NEVER duplicate canonical content in skill files — reference with §section pointers
@@ -38,7 +38,7 @@ When moving or renaming a doc:
 ## 3) Structural PR checklist
 
 - [ ] Scope is limited to one architectural surface or a documented wave.
-- [ ] Canonical runtime anchors remain intact (`turn-loop.md`, `play-runbook.md`, `scripts/CLAUDE.md`).
+- [ ] Canonical runtime anchors remain intact (`turn-loop.md`, `play-runbook.md`, `scripts/AGENTS.md`).
 - [ ] Required hubs/indexes remain present.
 - [ ] No broken canonical-hub links.
 - [ ] `python scripts/validate_reference_freshness.py` passes.
@@ -46,7 +46,7 @@ When moving or renaming a doc:
 - [ ] `python scripts/validate_canonical_references.py` passes.
 - [ ] If applicable, stale artifact check passes (`git diff --exit-code -- .`).
 - [ ] Phase skill files reference canonical sources, not duplicate them.
-- [ ] Phase CLAUDE.md files are under 40 lines.
+- [ ] Phase AGENTS.md files are under 40 lines.
 - [ ] New skills placed in correct phase directory.
 - [ ] If this PR completes an execution plan, plan moved to `ongoing-plans/plans/completed/`.
 - [ ] If this is a structural PR, check `ongoing-plans/analysis/` for stale artifacts and delete them.
@@ -65,10 +65,10 @@ For changes that add or modify game mechanics, lore, skills, or runtime behavior
 - [ ] References placed in phase-appropriate `references/` directory.
 - [ ] Domain scripts/tables placed in `phases/3-resolution/skills/[DOMAIN]/scripts/` or `tables/`.
 - [ ] Skill files reference canonical sources with §section pointers (relative for phase-local).
-- [ ] Phase CLAUDE.md and index.md updated with new/changed skills.
+- [ ] Phase AGENTS.md and index.md updated with new/changed skills.
 - [ ] `phase-manifest.md` updated (cli_commands, references, hooks).
 - [ ] Hook enforcement documented in skill's "Hooks That Enforce This" section.
-- [ ] Script registry (`scripts/CLAUDE.md`) updated if new CLI commands.
+- [ ] Script registry (`scripts/AGENTS.md`) updated if new CLI commands.
 - [ ] If state schema touched: full cross-cutting checklist applies. → `change-integration-checklist.md` §5
 - [ ] `python runtime/tests/run_all_tests.py 1` passes.
 - [ ] `python runtime/scripts/validate_reference_freshness.py` passes.

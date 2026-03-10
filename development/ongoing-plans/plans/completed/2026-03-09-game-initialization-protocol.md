@@ -9,16 +9,16 @@
 
 ## Objective
 
-Create a codified initialization protocol that governs game startup, streamlined character creation, and opening scene setting. The protocol must be discoverable by runtime Claude through existing CLAUDE.md and skill files, and must produce a valid, playable state.json from a blank template through an interactive player-facing flow.
+Create a codified initialization protocol that governs game startup, streamlined character creation, and opening scene setting. The protocol must be discoverable by runtime Claude through existing AGENTS.md and skill files, and must produce a valid, playable state.json from a blank template through an interactive player-facing flow.
 
 ## Scope
 
 - In scope:
   - New Phase 0 (game-initialization) skill file with step-by-step interactive protocol
   - `initialize-game` CLI command to generate seeded initial state.json
-  - Updates to runtime/CLAUDE.md to add initialization as a pre-turn-loop entry point
-  - Updates to Phase 1 CLAUDE.md for session-start vs game-start distinction
-  - Updates to phase-manifest.md and scripts/CLAUDE.md registries
+  - Updates to runtime/AGENTS.md to add initialization as a pre-turn-loop entry point
+  - Updates to Phase 1 AGENTS.md for session-start vs game-start distinction
+  - Updates to phase-manifest.md and scripts/AGENTS.md registries
   - Validation test for the initialization protocol
 - Out of scope:
   - Schema changes (state.schema.json is sufficient as-is)
@@ -29,7 +29,7 @@ Create a codified initialization protocol that governs game startup, streamlined
 
 1. Initialization protocol skill file created and wired into Phase 1
 2. `initialize-game` CLI command implemented and registered
-3. Runtime CLAUDE.md updated with game-start entry point
+3. Runtime AGENTS.md updated with game-start entry point
 4. Validation test passes
 5. Existing tests still pass
 
@@ -39,10 +39,10 @@ Create a codified initialization protocol that governs game startup, streamlined
 - [x] Create `runtime/phases/1-context-loading/skills/game-initialization.md` — the protocol skill
 - [x] Create `runtime/scripts/initialize_game.py` — CLI script to generate initial state
 - [x] Add `initialize-game` command to `emergence_cli.py`
-- [x] Update `runtime/CLAUDE.md` — add initialization entry point before turn loop
-- [x] Update `runtime/phases/1-context-loading/CLAUDE.md` — game-start context
+- [x] Update `runtime/AGENTS.md` — add initialization entry point before turn loop
+- [x] Update `runtime/phases/1-context-loading/AGENTS.md` — game-start context
 - [x] Update `runtime/phases/phase-manifest.md` — register new skill and command
-- [x] Update `runtime/scripts/CLAUDE.md` — register new script
+- [x] Update `runtime/scripts/AGENTS.md` — register new script
 - [x] Update `runtime/phases/1-context-loading/index.md` — register new skill
 - [x] Create `runtime/tests/test_game_initialization.py` — validation test
 - [x] Run all existing tests to verify no regressions (63/63 pass)
@@ -63,6 +63,6 @@ Create a codified initialization protocol that governs game startup, streamlined
 ## Exit Criteria
 
 1. `initialize-game` CLI command produces schema-valid state.json
-2. Protocol skill file is discoverable in Phase 1 CLAUDE.md and phase-manifest.md
-3. Runtime CLAUDE.md documents the game-start entry point
+2. Protocol skill file is discoverable in Phase 1 AGENTS.md and phase-manifest.md
+3. Runtime AGENTS.md documents the game-start entry point
 4. All tests pass (new + existing)

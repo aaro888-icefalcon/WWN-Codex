@@ -18,7 +18,7 @@ This means the decision of whether a player action triggers a CLI command (`move
 
 #### 1. Context Window Decay
 
-As conversations grow long, the procedural rules from `hard-rules.md`, `gm-protocol.md`, and phase CLAUDE.md files drift out of the model's active context window. The `inject-state-context.sh` hook re-injects **state data** (HP, inventory, clocks) every turn but does NOT re-inject the **procedural rules** (when to roll, when to run scene-pressure, the pre-response checklist). The model gradually "forgets" that free narration still requires `scene-pressure` execution.
+As conversations grow long, the procedural rules from `hard-rules.md`, `gm-protocol.md`, and phase AGENTS.md files drift out of the model's active context window. The `inject-state-context.sh` hook re-injects **state data** (HP, inventory, clocks) every turn but does NOT re-inject the **procedural rules** (when to roll, when to run scene-pressure, the pre-response checklist). The model gradually "forgets" that free narration still requires `scene-pressure` execution.
 
 #### 2. Weak Action Detection in validate-gm-response.sh
 
@@ -147,7 +147,7 @@ Each plan targets a different layer of the problem. Plans are ordered from most 
 - More complex hook logic than Plan A
 - Requires updating design docs that describe Phase 2 as advisory
 
-**Integration touchpoints:** All 7 (new skill, phase index.md, phase CLAUDE.md, manifest, hook, script registry if applicable, tests)
+**Integration touchpoints:** All 7 (new skill, phase index.md, phase AGENTS.md, manifest, hook, script registry if applicable, tests)
 **Validation:** Run full test suite + `validate_docs_structure.py` + manual play-test
 
 ---
@@ -189,8 +189,8 @@ Each plan targets a different layer of the problem. Plans are ordered from most 
 
 ### Plan E: Two-Phase Enforcement — Classify-Then-Confirm Gate (Architectural Fix)
 
-**Scope:** New phase workflow + two new hooks + CLAUDE.md contract change
-**Surfaces touched:** 4+ (Phase skills, Hooks, Manifest, CLAUDE.md, turn-loop) — **requires phased PRs**
+**Scope:** New phase workflow + two new hooks + AGENTS.md contract change
+**Surfaces touched:** 4+ (Phase skills, Hooks, Manifest, AGENTS.md, turn-loop) — **requires phased PRs**
 
 **Changes:**
 1. Split Phase 2 into two sub-phases:
@@ -199,7 +199,7 @@ Each plan targets a different layer of the problem. Plans are ordered from most 
 2. Create a new Stop hook `enforce-classification-declaration.sh` that blocks if the GM's response doesn't contain a classification block (formatted as a structured comment or metadata section).
 3. Create a new PreToolUse hook `validate-classification-consistency.sh` that checks: if the GM declared "free narration" but is now trying to narrate an action outcome without running scene-pressure, block.
 4. Update `runtime/turn-loop.md` to reflect the split Phase 2.
-5. Update `runtime/CLAUDE.md` pipeline table.
+5. Update `runtime/AGENTS.md` pipeline table.
 6. Update `runtime/phases/phase-manifest.md`.
 
 **Pros:**
@@ -215,7 +215,7 @@ Each plan targets a different layer of the problem. Plans are ordered from most 
 - Risk of over-engineering — adds structural complexity for a problem that might be solvable at the hook level
 - Requires updating all documentation that references "6-phase pipeline"
 
-**Integration touchpoints:** All 7 + turn-loop contract update + CLAUDE.md pipeline table
+**Integration touchpoints:** All 7 + turn-loop contract update + AGENTS.md pipeline table
 **Validation:** Full test suite + all validators + extended play-test session
 
 ---
@@ -245,10 +245,10 @@ Each plan targets a different layer of the problem. Plans are ordered from most 
 | `.claude/hooks/inject-state-context.sh` | State re-injection — missing procedural rule re-injection |
 | `.claude/hooks/validate-narrative-principles.sh` | Tone enforcement — works but doesn't catch missing CLI |
 | `.claude/settings.json` | Hook registration — Phase 2 has no hooks registered |
-| `runtime/phases/2-action-interpretation/CLAUDE.md` | Advisory-only phase declaration |
+| `runtime/phases/2-action-interpretation/AGENTS.md` | Advisory-only phase declaration |
 | `runtime/phases/phase-manifest.md` | Documents Phase 2 as hookless |
 | `runtime/phases/1-context-loading/references/hard-rules.md` | Rule #5 (scene-pressure mandate) |
 | `runtime/phases/1-context-loading/references/gm-protocol.md` | §When NOT to Roll, §Free Narration Pressure |
 | `runtime/phases/3-resolution/skills/exploration/scene-pressure.md` | Scene-pressure skill file |
 | `runtime/turn-loop.md` | 8-step turn protocol |
-| `runtime/CLAUDE.md` | Runtime governance — 7 hard rules |
+| `runtime/AGENTS.md` | Runtime governance — 7 hard rules |

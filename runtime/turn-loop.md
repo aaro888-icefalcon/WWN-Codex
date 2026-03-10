@@ -4,7 +4,7 @@ This document defines the strict turn protocol for runtime play.
 
 ## Preconditions
 
-- Canonical script registry reviewed: `scripts/CLAUDE.md`
+- Canonical script registry reviewed: `scripts/AGENTS.md`
 - Required runtime commands are marked `runtime-safe: yes`
 - Canonical state file path is known (typically `state.json`)
 
@@ -107,7 +107,7 @@ A turn is accepted only if all steps (0 through 11) complete successfully in ord
 
 ## Halt conditions
 
-- Missing required script in `scripts/CLAUDE.md`
+- Missing required script in `scripts/AGENTS.md`
 - Script marked `runtime-safe: no` or `unknown`
 - Script failure/non-zero status
 - Missing/invalid player action provenance payload
