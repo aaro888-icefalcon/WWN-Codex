@@ -4,7 +4,7 @@ Scope: `runtime/phases/`
 
 ## Purpose
 
-The GM turn is a 6-phase pipeline. Each phase has its own directory with `CLAUDE.md` (instructions) and `index.md` (content inventory). All resources (references, lore, scripts, tables) are co-located within their owning phase.
+The GM turn is a 6-phase pipeline. Each phase has its own directory with `AGENTS.md` (instructions) and `index.md` (content inventory). All resources (references, lore, scripts, tables) are co-located within their owning phase.
 
 ## Pipeline Phases
 
@@ -20,7 +20,7 @@ The GM turn is a 6-phase pipeline. Each phase has its own directory with `CLAUDE
 ## How to Use
 
 1. Process phases in order (1 through 6) for every turn.
-2. Load each phase's `CLAUDE.md` for mandatory steps.
+2. Load each phase's `AGENTS.md` for mandatory steps.
 3. Load specific `skills/*.md` files as needed.
 4. Phase 3 has domain sub-groups — load the relevant domain.
 

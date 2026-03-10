@@ -12,7 +12,7 @@ This document defines the canonical structure and content boundaries for the rep
 
 ## Runtime Structure
 
-The runtime is organized as a 6-phase GM pipeline. Each phase directory contains a `CLAUDE.md` (operating instructions) and an `index.md` (content inventory).
+The runtime is organized as a 6-phase GM pipeline. Each phase directory contains a `AGENTS.md` (operating instructions) and an `index.md` (content inventory).
 
 | Directory | Phase | Content |
 | --- | --- | --- |
@@ -48,12 +48,12 @@ Phase 3 organizes mechanical resolution by gameplay domain under `runtime/phases
 
 | File | Role |
 | --- | --- |
-| `runtime/CLAUDE.md` | Runtime operating instructions |
+| `runtime/AGENTS.md` | Runtime operating instructions |
 | `runtime/index.md` | Runtime content inventory and navigation hub |
 | `runtime/turn-loop.md` | 6-phase turn execution procedure |
 | `runtime/play-runbook.md` | Session-level play operations guide |
 | `runtime/phases/phase-manifest.md` | Machine-readable phase-to-content mapping |
-| `runtime/scripts/CLAUDE.md` | Script registry and CLI reference |
+| `runtime/scripts/AGENTS.md` | Script registry and CLI reference |
 
 ## Development Structure
 
@@ -66,7 +66,7 @@ Phase 3 organizes mechanical resolution by gameplay domain under `runtime/phases
 ## Enforcement Notes
 
 - Add new content to the phase directory matching the artifact's pipeline stage. Within phase 3, place content in the matching domain group.
-- Every directory must maintain an `index.md` as the discoverability entry point and a `CLAUDE.md` for operating instructions where applicable.
+- Every directory must maintain an `index.md` as the discoverability entry point and a `AGENTS.md` for operating instructions where applicable.
 - If a new file type is needed, update this architecture document in the same change.
 - Stable ordering in machine outputs: any randomness must be seedable with the seed recorded in state/turn records.
 

@@ -9,17 +9,17 @@ Two operating modes govern all work in this repository.
 ## Mode Selection
 
 - **Development mode**: editing code, schemas, docs, tests, scripts, or CI behavior → governed by this file
-- **Runtime (play) mode**: executing game turns without system changes → governed by `runtime/CLAUDE.md`
+- **Runtime (play) mode**: executing game turns without system changes → governed by `runtime/AGENTS.md`
 
 ## Development Mode — Workflow
 
 1. **Classify the change**: determine type (mechanic, lore, skill, script, hook, structural) and identify the owning phase. → `development/change-integration-checklist.md` §1
 2. **Plan placement and integration**: list files to create/edit, integration touchpoints to update, and done criteria. → `development/change-integration-checklist.md` §2. If the change touches 2+ major surfaces (see §3), write an execution plan in `development/ongoing-plans/plans/active/` using the template before implementing.
 3. **Implement smallest viable diff**: avoid unrelated cleanup/refactors unless explicitly requested.
-4. **Wire into runtime**: update all discovery and integration touchpoints so runtime Claude can find and follow the change. New content goes in the owning phase directory.
+4. **Wire into runtime**: update all discovery and integration touchpoints so runtime Codex can find and follow the change. New content goes in the owning phase directory.
 5. **Run checks**: execute required validators/tests for touched surfaces.
-6. **Review pass**: diff review + verify runtime discoverability (new content appears in phase CLAUDE.md tables, phase-manifest.md, script registry as applicable).
-7. **Summarize for PR**: include what changed, why, integration points updated, checks run, and remaining risks. If this completes an execution plan, move it from `plans/active/` to `plans/completed/`. → `development/ongoing-plans/CLAUDE.md`
+6. **Review pass**: diff review + verify runtime discoverability (new content appears in phase AGENTS.md tables, phase-manifest.md, script registry as applicable).
+7. **Summarize for PR**: include what changed, why, integration points updated, checks run, and remaining risks. If this completes an execution plan, move it from `plans/active/` to `plans/completed/`. → `development/ongoing-plans/AGENTS.md`
 
 ## Development Mode — Guardrails
 
@@ -34,8 +34,8 @@ Two operating modes govern all work in this repository.
 
 Three navigation/governance file types are used in this repository. Follow these roles strictly:
 
-- **`CLAUDE.md`** — Claude operating instructions for this scope. One per directory. Auto-loaded.
-- **`AGENTS.md`** — Subagent overrides only. Create only when subagent behavior differs from CLAUDE.md. Currently none exist.
+- **`AGENTS.md`** — Codex operating instructions for this scope. One per directory. Auto-loaded.
+- **Subagent overrides** — If subagent behavior ever needs to differ, document that policy directly in the nearest scoped `AGENTS.md`.
 - **`index.md`** — Content inventory and navigation hub. THE discovery entry point for any directory.
 
 Do not create `README.md` or `START-HERE.md` for new directories. Use `index.md` instead. When touching an existing directory, consolidate its README/START-HERE into `index.md` if practical.
@@ -64,7 +64,7 @@ Do not create `README.md` or `START-HERE.md` for new directories. Use `index.md`
 
 - Turn loop: `runtime/turn-loop.md`
 - Play runbook: `runtime/play-runbook.md`
-- Script registry: `runtime/scripts/CLAUDE.md`
+- Script registry: `runtime/scripts/AGENTS.md`
 - Runtime hub: `runtime/index.md`
 - Phase manifest: `runtime/phases/phase-manifest.md`
 
@@ -91,7 +91,7 @@ Every game turn follows this sequence. No steps may be skipped or reordered.
 10. **Validate** — `validate-state`.
 11. **Receipt** — Log full command sequence + move selection + seeds.
 
-Detail: `runtime/turn-loop.md`. Phase instructions: `runtime/phases/<N>/CLAUDE.md`.
+Detail: `runtime/turn-loop.md`. Phase instructions: `runtime/phases/<N>/AGENTS.md`.
 
 ## Repository Map
 

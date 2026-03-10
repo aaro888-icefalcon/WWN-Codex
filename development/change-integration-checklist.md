@@ -1,6 +1,6 @@
 # Change Integration Checklist
 
-Operational guide for integrating changes into the runtime system. Use this checklist whenever the development workflow (root `CLAUDE.md` §Workflow) reaches steps 1, 2, or 4.
+Operational guide for integrating changes into the runtime system. Use this checklist whenever the development workflow (root `AGENTS.md` §Workflow) reaches steps 1, 2, or 4.
 
 Related docs:
 - Folder contracts: `design-docs/repo-architecture.md`
@@ -47,7 +47,7 @@ What are you changing?
       Cross-cutting (used by 3+ domains, e.g., hard-rules, gm-protocol)
         → phases/1-context-loading/references/
     → Does it need new CLI support?
-        → Also update domain scripts + scripts/CLAUDE.md
+        → Also update domain scripts + scripts/AGENTS.md
 
   World/setting/lore content
     → All lore lives in phases/1-context-loading/lore/
@@ -103,7 +103,7 @@ For every change that affects how the game runs, check which touchpoints apply a
          Skill listed in inventory table
          Columns: Skill | File | CLI Commands | Trigger
 
-- [ ] 3. Phase CLAUDE.md
+- [ ] 3. Phase AGENTS.md
          Skill listed in routing table + trigger in pre-response checklist
 
 - [ ] 4. phase-manifest.md
@@ -113,7 +113,7 @@ For every change that affects how the game runs, check which touchpoints apply a
          Skill's "Hooks That Enforce This" section lists all applicable hooks
 
 - [ ] 6. Script registry
-         scripts/CLAUDE.md updated if new CLI subcommands added
+         scripts/AGENTS.md updated if new CLI subcommands added
 
 - [ ] 7. Tests
          runtime/tests/ updated if new mechanics or CLI subcommands introduced
@@ -135,13 +135,13 @@ For every change that affects how the game runs, check which touchpoints apply a
 
 ## §3 — Scope Accounting
 
-"Major surfaces" referenced in root `CLAUDE.md` §Guardrails. If a change touches more than 2, split into phased PRs.
+"Major surfaces" referenced in root `AGENTS.md` §Guardrails. If a change touches more than 2, split into phased PRs.
 
 ```
 1. State schema       — state.json structure changes
 2. Phase references   — phases/*/references/*.md (canonical rules)
 3. Phase scripts      — phases/3-resolution/skills/*/scripts/*.py (mechanics code)
-4. Phase skills       — phases/*/skills/*.md, phase CLAUDE.md/index.md (workflows)
+4. Phase skills       — phases/*/skills/*.md, phase AGENTS.md/index.md (workflows)
 5. Validation/hooks   — .claude/hooks/*, .claude/settings.json
 6. Phase manifest     — phases/phase-manifest.md (system config)
 7. Output rendering   — phases/4-narrative/assets/*, derived templates
@@ -177,7 +177,7 @@ Some artifacts span multiple phases and don't fit the phase-first placement mode
 
 The state schema is the primary cross-cutting artifact. It touches validation, persistence, and every phase that reads state.
 
-**Approval gate:** `schema_version` bumps require explicit confirmation before proceeding (root `CLAUDE.md` §Guardrails).
+**Approval gate:** `schema_version` bumps require explicit confirmation before proceeding (root `AGENTS.md` §Guardrails).
 
 ```
 Development-side:
@@ -188,8 +188,8 @@ Development-side:
 - [ ] 5. development/quality/reference-freshness.md — update commit hash
 
 Runtime-side:
-- [ ] 6. runtime/CLAUDE.md — Entry Points table reflects schema contract
-- [ ] 7. phases/5-persistence/CLAUDE.md — Key Resources references schema
+- [ ] 6. runtime/AGENTS.md — Entry Points table reflects schema contract
+- [ ] 7. phases/5-persistence/AGENTS.md — Key Resources references schema
 - [ ] 8. phases/phase-manifest.md — Phase 5 references list includes schema
 
 Validation:

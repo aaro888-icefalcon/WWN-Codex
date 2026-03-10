@@ -73,7 +73,7 @@ The audit below is retained as a historical snapshot. The following findings are
 
 ## Layer 4 System Map
 
-### CLAUDE.md Architecture (Primary AI Instruction File)
+### AGENTS.md Architecture (Primary AI Instruction File)
 - **Total:** 764 lines, ~6,431 tokens
 - **Structure:** Monolithic. 21 sections covering all GM functions in a single file.
 - **Progressive disclosure:** Partial. §20 routes to reference files by need, but §12-14 duplicate content already in reference files.
@@ -81,7 +81,7 @@ The audit below is retained as a historical snapshot. The following findings are
 - **Critical instructions position:** Response Gate at top (good). Self-Correction at §3 (good). CLI Reference at §13/line 512 (buried). State Management at §16/line 614 (buried).
 
 ### Game Phase Management
-- **File(s):** CLAUDE.md §17 (Session Workflow), §0 (Response Gate), §12 (Combat System)
+- **File(s):** AGENTS.md §17 (Session Workflow), §0 (Response Gate), §12 (Combat System)
 - **Phases identified:** Session start, free play, combat, scene transition, session end
 - **Missing phases:** Downtime (CLI exists but no flow), social encounter (no structured flow), exploration (no flow), world tick (trigger defined but procedure gaps)
 - **Transition triggers:** Scene transition defined (6 triggers in Gate 3). Combat start/end implicit. Others undefined.
@@ -118,7 +118,7 @@ The audit below is retained as a historical snapshot. The following findings are
 | `technique_registry.py` | Combat technique database | Form, variant | Technique dict | Reference only | Internal |
 
 ### Context Management
-- **Always in context:** CLAUDE.md (~6,431 tokens), state hook output (~300 tokens)
+- **Always in context:** AGENTS.md (~6,431 tokens), state hook output (~300 tokens)
 - **Loaded on demand:** gm-protocol.md (~4,921), hard-rules.md (~2,284), lore files, form references
 - **Context budget strategy:** §20 lists files with "Load When Needed" but no phase-specific routing
 - **File reading patterns:** §19 distinguishes CLI (always for mechanics) from lore (load on first contact)
@@ -129,7 +129,7 @@ The audit below is retained as a historical snapshot. The following findings are
 - **Ambiguous:** When to run world-tick (trigger defined but JSON arg construction unclear), how to extract enemy stats for attack CLI args from state
 
 ### Tone & Genre Enforcement
-- **File(s):** CLAUDE.md §8 (Narrative Principles), hard-rules.md §Tone Reminders + §Anti-Power-Fantasy
+- **File(s):** AGENTS.md §8 (Narrative Principles), hard-rules.md §Tone Reminders + §Anti-Power-Fantasy
 - **Method:** Mix of prohibitive ("NOT power fantasy"), descriptive ("Dark Western + LitRPG + Political Fantasy + Survival Horror"), and prescriptive (2 worked examples in §9-10)
 - **Specificity:** Moderate. Prohibitions are specific (banned heroic descriptors). Positive examples exist but are workflow-focused, not tone-focused.
 
@@ -152,11 +152,11 @@ The audit below is retained as a historical snapshot. The following findings are
 
 | Phase | Where Defined | AI Responsibilities | Entry Trigger | Exit Trigger | Phase-Specific Context |
 |-------|--------------|---------------------|---------------|--------------|----------------------|
-| Session Start | CLAUDE.md §11, §17 | Load state, summarize, generate scene | User starts session | First scene generated | Quick Start checklist |
+| Session Start | AGENTS.md §11, §17 | Load state, summarize, generate scene | User starts session | First scene generated | Quick Start checklist |
 | Free Play | Implicit | Narrate, resolve moves, manage NPCs | Scene transition ends | Combat starts / scene transition | Response Gate (generic) |
-| Combat | CLAUDE.md §12, §17 | Initiative, turns, attacks, conditions, end | Enemy engagement | All enemies defeated/fled | Combat Display Template |
-| Scene Transition | CLAUDE.md Gate 3, §15 | World tick, World Pulse, update state | 6 defined triggers | New scene narrated | World Pulse format |
-| Session End | CLAUDE.md §17 | Save state, summarize | User ends session | State saved | Save checklist |
+| Combat | AGENTS.md §12, §17 | Initiative, turns, attacks, conditions, end | Enemy engagement | All enemies defeated/fled | Combat Display Template |
+| Scene Transition | AGENTS.md Gate 3, §15 | World tick, World Pulse, update state | 6 defined triggers | New scene narrated | World Pulse format |
+| Session End | AGENTS.md §17 | Save state, summarize | User ends session | State saved | Save checklist |
 | Social Encounter | ABSENT | — | — | — | — |
 | Exploration | ABSENT | — | — | — | — |
 | Downtime | CLI exists, no flow | — | — | — | — |
@@ -170,7 +170,7 @@ The audit below is retained as a historical snapshot. The following findings are
 ### 1.2: Combat Sub-Phase Structure
 
 - [ ] Initiative determination is a defined step: Mentioned in §17 step 1 but not proceduralized
-- [ ] Turn order is explicit: `combat.py` has `advance_turn()` but CLAUDE.md doesn't instruct AI to call it
+- [ ] Turn order is explicit: `combat.py` has `advance_turn()` but AGENTS.md doesn't instruct AI to call it
 - [ ] Player turn flow: Partially defined in §17 steps 3-6
 - [ ] Enemy turn flow: §17 step 7 says "Enemy counterattack: run attack CLI" — no behavior selection guidance beyond §12
 - [ ] Round end procedure: **ABSENT** — no condition ticking, no clock checking, no combat-end evaluation
@@ -227,12 +227,12 @@ The audit below is retained as a historical snapshot. The following findings are
 
 | Instruction | Location | What to Track | Written to State? | Desync Risk |
 |-------------|----------|---------------|-------------------|-------------|
-| "Tick clocks after scene transition" | CLAUDE.md Rule 5 | Clock values | YES (clock-tick updates) | LOW |
-| "Track composure" | CLAUDE.md §12 | Composure value | YES (in character.composure) | LOW |
+| "Tick clocks after scene transition" | AGENTS.md Rule 5 | Clock values | YES (clock-tick updates) | LOW |
+| "Track composure" | AGENTS.md §12 | Composure value | YES (in character.composure) | LOW |
 | "Update NPC disposition" | hard-rules.md §NPCs | NPC trust/disposition | PARTIAL (trust system exists but state.json NPCs lack trust field) | MEDIUM |
-| "Track AP spent this turn" | CLAUDE.md §12 (implicit) | AP remaining | NO (not in state) | **HIGH** |
+| "Track AP spent this turn" | AGENTS.md §12 (implicit) | AP remaining | NO (not in state) | **HIGH** |
 | "Track condition durations" | conditions.py (definitions) | Condition turns remaining | NO (conditions stored as string list, no duration) | **HIGH** |
-| "Track enemy telegraphed actions" | CLAUDE.md §12 | Next enemy action | NO (not persisted) | MEDIUM |
+| "Track enemy telegraphed actions" | AGENTS.md §12 | Next enemy action | NO (not persisted) | MEDIUM |
 | entropy/momentum/connection | state.json | Old meters | YES but OBSOLETE | **CRITICAL** (code no longer reads these) |
 
 ### 2.3: Context Budget Analysis
@@ -243,7 +243,7 @@ CONTEXT BUDGET
 Model context window: ~200,000 tokens (Claude Opus 4)
 
 Persistent context (always loaded):
-  CLAUDE.md:                    ~6,431 tokens
+  AGENTS.md:                    ~6,431 tokens
   State hook output:            ~300 tokens
   System prompt overhead:       ~500 tokens
   PERSISTENT SUBTOTAL:          ~7,231 tokens (3.6% of window)
@@ -264,11 +264,11 @@ REMAINING for AI reasoning:     ~173,735 tokens (87%)
 - [x] Persistent context ≤ 30% of window: YES (3.6%)
 - [x] Peak load ≤ 75% of window: YES (13%)
 - [x] ≥ 25% remains for reasoning: YES (87%)
-- [ ] No single component exceeds 1000 tokens: FAIL — CLAUDE.md is 6,431 tokens
+- [ ] No single component exceeds 1000 tokens: FAIL — AGENTS.md is 6,431 tokens
 
-**Note:** Context budget is not the problem. The 200K window is generous. The issue is *attention* — with 6,431 tokens of instructions, the AI's attention to any specific instruction degrades. Restructuring CLAUDE.md to ~400 lines (~2,600 tokens) would significantly improve instruction adherence.
+**Note:** Context budget is not the problem. The 200K window is generous. The issue is *attention* — with 6,431 tokens of instructions, the AI's attention to any specific instruction degrades. Restructuring AGENTS.md to ~400 lines (~2,600 tokens) would significantly improve instruction adherence.
 
-### 2.4: CLAUDE.md Structure Analysis
+### 2.4: AGENTS.md Structure Analysis
 
 | # | Section | Lines | ~Tokens | Content Type | Criticality | Position |
 |---|---------|-------|---------|-------------|-------------|----------|
@@ -294,7 +294,7 @@ REMAINING for AI reasoning:     ~173,735 tokens (87%)
 | 19 | Procedural Gen vs Lore | 690-707 | 137 | Routing | MEDIUM | Bottom |
 | 20 | Reference Files | 710-763 | 397 | File lookup | LOW (rarely consulted at bottom) | Bottom |
 
-**Instruction decay:** Critical content (State Management §16, Session Workflow §17) is buried at lines 614-661. The AI's attention to instructions degrades with distance from the top of the file. §12-14 and §18-20 consume ~1,790 tokens (~28% of CLAUDE.md) on content that duplicates reference files or serves as a lookup table.
+**Instruction decay:** Critical content (State Management §16, Session Workflow §17) is buried at lines 614-661. The AI's attention to instructions degrades with distance from the top of the file. §12-14 and §18-20 consume ~1,790 tokens (~28% of AGENTS.md) on content that duplicates reference files or serves as a lookup table.
 
 ---
 
@@ -335,11 +335,11 @@ REMAINING for AI reasoning:     ~173,735 tokens (87%)
 
 | Location | Instruction | What AI Is Asked to Compute | Script Alternative? |
 |---|---|---|---|
-| CLAUDE.md §12 | "Track Composure" | Track composure manually | Could be scripted |
-| CLAUDE.md §17 step 6 | "Apply damage to target" | Subtract damage from HP, check for death | Could be scripted |
-| CLAUDE.md §12 | "Morale: Enemies may flee at <25% HP" | Calculate HP percentage, decide flee | Could be scripted |
+| AGENTS.md §12 | "Track Composure" | Track composure manually | Could be scripted |
+| AGENTS.md §17 step 6 | "Apply damage to target" | Subtract damage from HP, check for death | Could be scripted |
+| AGENTS.md §12 | "Morale: Enemies may flee at <25% HP" | Calculate HP percentage, decide flee | Could be scripted |
 | hard-rules.md §Combat | "Simulate ALL attacks with actual rolls" | Run multiple attack CLIs | Partially scripted |
-| CLAUDE.md §12 | Stances table: "AP: 2/3/4" | Track AP remaining per turn | Could be scripted |
+| AGENTS.md §12 | Stances table: "AP: 2/3/4" | Track AP remaining per turn | Could be scripted |
 
 ### 3.3: Script Integration Quality
 
@@ -362,13 +362,13 @@ REMAINING for AI reasoning:     ~173,735 tokens (87%)
 |---|---|---|
 | Prescriptive examples (model narrations) | 2 | §9 (action resolution), §10 (scene transition + creatures) |
 | Descriptive guidelines | 3 | §8 (Narrative Principles: 38 lines), §4 (GM Agenda: 12 lines), §5 (GM Principles: 13 lines) |
-| Prohibitive warnings | 5 | hard-rules.md §Anti-Power-Fantasy, §Heroic Descriptor Prohibition, §Tone Reminders; CLAUDE.md line 5 warning |
+| Prohibitive warnings | 5 | hard-rules.md §Anti-Power-Fantasy, §Heroic Descriptor Prohibition, §Tone Reminders; AGENTS.md line 5 warning |
 | Genre labels without examples | 1 | hard-rules.md: "Dark Western + LitRPG + Political Fantasy + Survival Horror" |
 
 - [x] Prescriptive examples exist: YES (2)
 - [ ] Examples cover all scene types: NO (only action + scene transition; no social, exploration, environmental, NPC dialogue)
 - [ ] Examples demonstrate genre blend: PARTIAL (survival horror tone shown, political/western less so)
-- [ ] Tone examples in persistent context: YES (CLAUDE.md §8-10)
+- [ ] Tone examples in persistent context: YES (AGENTS.md §8-10)
 - [ ] Prescriptive > prohibitive: NO (5 prohibitive vs 2 prescriptive)
 
 ### 4.2: Narrator-Rules Boundary
@@ -407,12 +407,12 @@ REMAINING for AI reasoning:     ~173,735 tokens (87%)
 | Physically impossible action | NO | — | — |
 | Player disputes mechanical outcome | NO | — | — |
 | Two rules contradict | NO | — | — |
-| Player asks "what can I do?" | PARTIAL | CLAUDE.md §7 (list available actions) | Combat only; not general |
+| Player asks "what can I do?" | PARTIAL | AGENTS.md §7 (list available actions) | Combat only; not general |
 | Action doesn't fit current phase | NO | — | — |
 | Simultaneous player actions | NO | — | — |
 | Player wants to retcon | NO | — | — |
 | Mechanically correct but narratively absurd | NO | — | — |
-| Player asks to see math/rolls | YES | CLAUDE.md §0 (show CLI output) | Explicit |
+| Player asks to see math/rolls | YES | AGENTS.md §0 (show CLI output) | Explicit |
 
 **Coverage:** 4/10 addressed (partially). Most edge cases would produce inconsistent AI behavior.
 
@@ -422,13 +422,13 @@ REMAINING for AI reasoning:     ~173,735 tokens (87%)
 
 | Error Type | Detection Method? | Recovery Protocol? | Authority Chain? | Where? |
 |---|---|---|---|---|
-| Computation error (wrong math) | PARTIAL (Self-Correction §3) | NO | Implicit | CLAUDE.md §3 |
+| Computation error (wrong math) | PARTIAL (Self-Correction §3) | NO | Implicit | AGENTS.md §3 |
 | State desync (AI vs. state file) | YES (state hook shows current state) | PARTIAL ("state.json is canonical") | YES | Rule 7 |
 | Behavioral violation (NPC off-pattern) | NO | NO | — | — |
 | Tone drift | NO | NO | — | — |
 | Continuity error (contradicts facts) | NO | NO | — | — |
 | Player-flagged error | NO | NO | — | — |
-| Rule misapplication | PARTIAL (Self-Correction) | NO | — | CLAUDE.md §3 |
+| Rule misapplication | PARTIAL (Self-Correction) | NO | — | AGENTS.md §3 |
 
 **Coverage:** 2/7 error types have recovery protocols. Authority chain is implicit (Rule 7 establishes state.json as canonical, but no formal hierarchy is documented).
 
@@ -486,7 +486,7 @@ REMAINING for AI reasoning:     ~173,735 tokens (87%)
 
 ---
 
-## CLAUDE.md Restructuring Plan
+## AGENTS.md Restructuring Plan
 
 ```
 CURRENT: 764 lines, ~6,431 tokens, monolithic
@@ -494,7 +494,7 @@ TARGET:  ~400 lines, ~2,600 tokens, routing hub
 
 RECOMMENDED STRUCTURE:
 
-CLAUDE.md (~400 lines, routing hub):
+AGENTS.md (~400 lines, routing hub):
   §0: Response Gate (76 lines, KEEP — most critical section)
   §1: Seven Hard Rules (13 lines, KEEP)
   §2: Failure Examples (60 lines, KEEP — effective training)
@@ -511,7 +511,7 @@ CLAUDE.md (~400 lines, routing hub):
   NEW: Phase-specific context routing (15 lines, replaces §20)
   TOTAL KEPT: ~434 lines, ~2,830 tokens
 
-MOVE OUT OF CLAUDE.md:
+MOVE OUT OF AGENTS.md:
   §9-10 (Worked Examples) → references/narration-examples.md
     Reason: Training examples, not operational instructions. 75 lines, ~683 tokens freed.
   §11 (Quick Start) → references/gm-protocol.md (append)
@@ -524,7 +524,7 @@ MOVE OUT OF CLAUDE.md:
     Reason: Duplicates awakening.md. 25 lines, ~189 tokens freed.
   §18 (Key Mechanics) → references/math-assumptions.md (merge)
     Reason: Duplicates math-assumptions.md. 24 lines, ~189 tokens freed.
-  §20 (Reference Files) → replaced by phase-specific routing in CLAUDE.md
+  §20 (Reference Files) → replaced by phase-specific routing in AGENTS.md
     Reason: Bottom-of-file lookup table rarely consulted. 54 lines, ~397 tokens freed.
 
 TOTAL FREED: ~307 lines, ~2,584 tokens
@@ -535,7 +535,7 @@ REORDER:
   Move §15 (World Pulse) into §17 (Session Workflow)
     Reason: World Pulse is part of scene transition workflow, not standalone.
 
-ADD TO CLAUDE.md:
+ADD TO AGENTS.md:
   Combat sub-phase procedure in §17 (replaces current 9-step combat flow)
   Phase-specific context routing (replaces §20 lookup table)
   Round-end CLI call instruction in combat sub-phases
@@ -549,7 +549,7 @@ ADD TO CLAUDE.md:
 ### FINDING 4A-1: No Combat Round-End Procedure
 **Severity:** CRITICAL
 **Component:** 4A-Phases
-**Evidence:** No function named `process_round_end`, `tick_conditions`, or `round_end` exists in any script. CLAUDE.md §17 (Combat Flow) has 9 steps, none addressing round-end processing.
+**Evidence:** No function named `process_round_end`, `tick_conditions`, or `round_end` exists in any script. AGENTS.md §17 (Combat Flow) has 9 steps, none addressing round-end processing.
 **Failure Mode:** Conditions (Bleeding, Burning, Poisoned) are never automatically processed. Their damage and duration are forgotten.
 **Frequency:** Every combat with conditions (estimated 60% of combats)
 **Play Scenario:** Round 1: Player attacks wolf, wolf attacks back. Player gets Bleeding (2 dmg/turn for 3 turns). Round 2: AI presents player turn. No Bleeding damage applied. Player attacks again. AI forgets Bleeding exists. Round 3: AI has completely lost track. Bleeding never fires. By contrast, with a round-end CLI call, the AI would receive `{"condition_damage": [{"entity": "Shake", "condition": "Bleeding", "damage": 2, "turns_remaining": 2}]}` and be forced to narrate and apply it.
@@ -558,7 +558,7 @@ ADD TO CLAUDE.md:
 ### FINDING 4A-2: No Combat Sub-Phase Structure
 **Severity:** MAJOR
 **Component:** 4A-Phases
-**Evidence:** CLAUDE.md §17 Combat Flow is 9 steps without clear phase boundaries. No separation between initiative, player turn, enemy turn, round end.
+**Evidence:** AGENTS.md §17 Combat Flow is 9 steps without clear phase boundaries. No separation between initiative, player turn, enemy turn, round end.
 **Failure Mode:** AI skips steps, particularly enemy turns and round-end processing. Turn order becomes inconsistent.
 **Frequency:** Every multi-round combat
 **Play Scenario:** Round 2 of combat with 3 enemies. AI resolves player attack, then enemy 1 attacks, then asks "What do you do?" — skipping enemies 2 and 3. Without explicit sub-phases, the AI loses track of whose turn it is.
@@ -573,13 +573,13 @@ ADD TO CLAUDE.md:
 **Play Scenario:** AI tries to run `world-tick --world-json '{...}'` using state.json data. Script crashes with KeyError on `clock["owner"]`. AI falls back to manual narration, defeating the purpose of Layer 3.
 **Recommendation:** Phase B1 — Migrate state.json schema.
 
-### FINDING 4B-2: CLAUDE.md Monolith
+### FINDING 4B-2: AGENTS.md Monolith
 **Severity:** MAJOR
 **Component:** 4B-State (context management)
-**Evidence:** CLAUDE.md is 764 lines, ~6,431 tokens. Sections 12-14 and 18-20 duplicate content in reference files and consume ~1,790 tokens (28%).
+**Evidence:** AGENTS.md is 764 lines, ~6,431 tokens. Sections 12-14 and 18-20 duplicate content in reference files and consume ~1,790 tokens (28%).
 **Failure Mode:** Instruction decay — AI attention to specific instructions degrades with file size. Critical instructions (State Management §16, Session Workflow §17) are buried at lines 614-661.
 **Frequency:** Every session (degraded instruction adherence)
-**Play Scenario:** AI processes response. Reads Response Gate (top of CLAUDE.md). Follows it. But State Management is at line 614 — AI sometimes forgets to save state.json after non-combat events. With restructured CLAUDE.md at ~400 lines, State Management would be in the top 40%.
+**Play Scenario:** AI processes response. Reads Response Gate (top of AGENTS.md). Follows it. But State Management is at line 614 — AI sometimes forgets to save state.json after non-combat events. With restructured AGENTS.md at ~400 lines, State Management would be in the top 40%.
 **Recommendation:** Phase C2 — Aggressive restructuring.
 
 ### FINDING 4C-1: No Condition Turn-Start Processing
@@ -603,7 +603,7 @@ ADD TO CLAUDE.md:
 ### FINDING 4D-1: Prohibitive > Prescriptive Tone Guidance
 **Severity:** MINOR
 **Component:** 4D-Narrator
-**Evidence:** 5 prohibitive warnings (hard-rules.md §Anti-Power-Fantasy, §Heroic Descriptor Prohibition, §Tone Reminders) vs 2 prescriptive worked examples (CLAUDE.md §9-10). Worked examples demonstrate workflow, not tone.
+**Evidence:** 5 prohibitive warnings (hard-rules.md §Anti-Power-Fantasy, §Heroic Descriptor Prohibition, §Tone Reminders) vs 2 prescriptive worked examples (AGENTS.md §9-10). Worked examples demonstrate workflow, not tone.
 **Failure Mode:** AI knows what NOT to do but has limited positive examples of correct tone. Over time, it defaults to generic fantasy narration.
 **Frequency:** ~10% of sessions experience noticeable tone drift
 **Play Scenario:** After 20 exchanges, AI narration subtly shifts from "the pry bar connects with a wet crunch — the thing's carapace cracks but it barely flinches" to "you land a powerful blow, cracking its armor." The second is generic fantasy, not survival horror. With positive tone exemplars, the AI would have concrete patterns to match.
@@ -620,7 +620,7 @@ ADD TO CLAUDE.md:
 ### FINDING 4F-1: No Error Recovery Protocols
 **Severity:** MAJOR
 **Component:** 4F-Errors
-**Evidence:** Only Self-Correction Protocol (CLAUDE.md §3) exists. No procedure for: player-flagged errors, state desync recovery, continuity errors, tone correction, behavioral violations.
+**Evidence:** Only Self-Correction Protocol (AGENTS.md §3) exists. No procedure for: player-flagged errors, state desync recovery, continuity errors, tone correction, behavioral violations.
 **Failure Mode:** When errors occur (guaranteed over a campaign), they compound. Player says "that's wrong, I had 53 HP not 69." AI has no procedure — sometimes it fixes correctly, sometimes it apologizes and makes it worse.
 **Frequency:** Multiple times per campaign
 **Recommendation:** Phase D4 — Add error recovery protocol.
@@ -628,7 +628,7 @@ ADD TO CLAUDE.md:
 ### FINDING 4F-2: No Authority Chain Documentation
 **Severity:** MAJOR
 **Component:** 4F-Errors
-**Evidence:** Rule 7 states "state.json is canonical" but no formal hierarchy exists for: state.json vs AI narration, CLI output vs AI calculation, hard-rules.md vs gm-protocol.md vs CLAUDE.md.
+**Evidence:** Rule 7 states "state.json is canonical" but no formal hierarchy exists for: state.json vs AI narration, CLI output vs AI calculation, hard-rules.md vs gm-protocol.md vs AGENTS.md.
 **Failure Mode:** When AI narration contradicts state.json, there's no defined resolution. AI might update state to match its narration (wrong) instead of re-reading state (right).
 **Frequency:** Every session has minor state/narration tension
 **Recommendation:** Phase D3 — Document authority chain.
@@ -644,8 +644,8 @@ ADD TO CLAUDE.md:
 - **B4:** CLI commands for round-end and turn-start
 
 ### 2. High-Frequency Failure Prevention
-- **C1:** Combat sub-phase injection in CLAUDE.md
-- **C2:** CLAUDE.md aggressive restructuring (764 → ~400 lines)
+- **C1:** Combat sub-phase injection in AGENTS.md
+- **C2:** AGENTS.md aggressive restructuring (764 → ~400 lines)
 
 ### 3. Consistency Fixes
 - **D1:** Positive narration examples

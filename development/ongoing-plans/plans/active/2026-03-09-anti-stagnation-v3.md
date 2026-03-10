@@ -31,7 +31,7 @@ Without anti-stagnation, the GM (LLM) tends toward safe, repetitive turns — sk
 - `state.schema.json` — Add `session.turns_since_hard_move`, `current_scene.telegraphed_threats[]`
 - `triggers.py` — Extend `check_all_triggers()` to evaluate anti-stagnation thresholds
 - `turn-loop.md` — Add move-tier evaluation as a full step (step 6)
-- Root `CLAUDE.md` — Embed condensed turn loop in Runtime Turn Loop section
+- Root `AGENTS.md` — Embed condensed turn loop in Runtime Turn Loop section
 - `gm-protocol.md` — Add §Scene Pressure with tier definitions and narrative directives
 - `hard-rules.md` — Add Hard Rule #13: Scene Pressure Is Binding
 - `narration-mappings.md` — Add move-integration notes to ALL mechanic sections (§save, §combat, §spell, §social, §travel)
@@ -415,9 +415,9 @@ Create `runtime/phases/3-resolution/skills/world-building/scripts/gm_moves.py`.
   - If threshold met (5 or 8), append to `commands_to_fire` with `source: "anti_stagnation"`
 - [ ] **T3.2** Add stagnation counter to `arithmetic_trace` output
 
-### T4: Turn Loop Integration — turn-loop.md (EDIT) + Root CLAUDE.md (EDIT)
+### T4: Turn Loop Integration — turn-loop.md (EDIT) + Root AGENTS.md (EDIT)
 
-- [ ] **T4.1** Embed condensed turn loop in root CLAUDE.md (new §Runtime Turn Loop section between Runtime Surfaces and Repository Map):
+- [ ] **T4.1** Embed condensed turn loop in root AGENTS.md (new §Runtime Turn Loop section between Runtime Surfaces and Repository Map):
   ```markdown
   ## Runtime Turn Loop (Mandatory Sequence)
 
@@ -442,13 +442,13 @@ Create `runtime/phases/3-resolution/skills/world-building/scripts/gm_moves.py`.
   10. **Validate** — `validate-state`.
   11. **Receipt** — Log full command sequence + move selection + seeds.
 
-  Detail: `runtime/turn-loop.md`. Phase instructions: `runtime/phases/<N>/CLAUDE.md`.
+  Detail: `runtime/turn-loop.md`. Phase instructions: `runtime/phases/<N>/AGENTS.md`.
   ```
-- [ ] **T4.2** Renumber `runtime/turn-loop.md` to match root CLAUDE.md version. Step 6 is a full step (not 5.5). Flow diagram updated.
+- [ ] **T4.2** Renumber `runtime/turn-loop.md` to match root AGENTS.md version. Step 6 is a full step (not 5.5). Flow diagram updated.
 - [ ] **T4.3** Add escalation check to step 0b (forced moves fire BEFORE player's turn)
 - [ ] **T4.4** Add natural move evaluation to step 6 (after command dispatch)
 - [ ] **T4.5** Add counter update to step 8 (persist phase)
-- [ ] **T4.6** Update `runtime/CLAUDE.md` — remove duplicate governance, point to root CLAUDE.md for turn loop
+- [ ] **T4.6** Update `runtime/AGENTS.md` — remove duplicate governance, point to root AGENTS.md for turn loop
 
 ### T5: GM Protocol — gm-protocol.md (EDIT)
 
@@ -539,7 +539,7 @@ Create `runtime/tests/test_moves.py`.
 7. T7 — Reference doc (gm-move-taxonomy.md)
 8. T5, T6 — Update governance docs (gm-protocol, hard-rules)
 9. T8 — Update narration-mappings.md (all sections)
-10. T4 — Update turn-loop.md + root CLAUDE.md (integration)
+10. T4 — Update turn-loop.md + root AGENTS.md (integration)
 11. T12 — Update state.json with new fields
 12. Run all tests, fix issues
 13. Run existing test suite (regression check)
@@ -548,8 +548,8 @@ Create `runtime/tests/test_moves.py`.
 
 | File | Change Type | Surfaces Touched |
 |------|-------------|------------------|
-| `CLAUDE.md` (root) | Edit | Turn loop contract (new §Runtime Turn Loop) |
-| `runtime/CLAUDE.md` | Edit | Governance (point to root for turn loop) |
+| `AGENTS.md` (root) | Edit | Turn loop contract (new §Runtime Turn Loop) |
+| `runtime/AGENTS.md` | Edit | Governance (point to root for turn loop) |
 | `runtime/schemas/state.schema.json` | Edit | State schema |
 | `runtime/phases/3-resolution/skills/world-building/scripts/gm_moves.py` | New | Rules logic (6 dispatchers) |
 | `runtime/phases/3-resolution/skills/world-building/scripts/triggers.py` | Edit | Rules logic |
@@ -808,6 +808,6 @@ Maximum consecutive soft-only turns: **4**. Natural Tier 2 events (catastrophic 
 8. All existing tests pass (no regression)
 9. `arithmetic_trace` present on all move outputs
 10. Same seed + same state → deterministic move selection
-11. Root CLAUDE.md contains embedded turn loop
+11. Root AGENTS.md contains embedded turn loop
 12. All 6 narration-mappings sections have move-integration notes
 13. `behavior.py` exports `get_profile_description()` for attack dispatcher

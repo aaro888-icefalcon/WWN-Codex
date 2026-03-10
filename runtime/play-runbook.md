@@ -16,7 +16,7 @@ If explicit player action is absent, halt turn progression and return scene/opti
 
 ## Run a turn
 
-1. Open `scripts/CLAUDE.md` and identify required runtime-safe commands.
+1. Open `scripts/AGENTS.md` and identify required runtime-safe commands.
 2. Execute the strict protocol in `turn-loop.md`.
 3. Produce a turn receipt with:
    - Commands run
@@ -33,13 +33,13 @@ If explicit player action is absent, halt turn progression and return scene/opti
 
 ## Regenerate derived outputs
 
-- Use only documented commands from `scripts/CLAUDE.md`.
+- Use only documented commands from `scripts/AGENTS.md`.
 - If regeneration tooling is missing, halt runtime and log a development-mode gap.
 
 ## Apply migrations/backfills
 
 - Not allowed in runtime mode.
-- Switch to development mode under overall `CLAUDE.md` with explicit approval gates.
+- Switch to development mode under overall `AGENTS.md` with explicit approval gates.
 
 ## Rollback a broken turn
 
@@ -55,4 +55,4 @@ If explicit player action is absent, halt turn progression and return scene/opti
 
 ## Cohesion rule
 
-Runtime mode may execute only scripts listed in `scripts/CLAUDE.md` with `runtime-safe: yes`.
+Runtime mode may execute only scripts listed in `scripts/AGENTS.md` with `runtime-safe: yes`.

@@ -116,7 +116,7 @@ Stop gameplay. Review your last 3-5 responses against this checklist. For each i
 |---|-------|-----------|
 | H1 | The game was clearly in one phase per response (EXPLORATION/COMBAT/SOCIAL/DOWNTIME/FREE_PLAY) | |
 | H2 | Phase transitions were handled explicitly (not skipped or blurred) | |
-| H3 | Required hooks for each phase were fired (see CLAUDE.md — Truth Model) | |
+| H3 | Required hooks for each phase were fired (see AGENTS.md — Truth Model) | |
 | H4 | Combat sub-phases were followed in order (SETUP→TURN_START→PLAYER/ENEMY→ROUND_END) | |
 
 ---
@@ -141,7 +141,7 @@ Count results:
 - **0 FAIL:** Excellent — the system is working as designed
 - **1-2 FAIL:** Good — minor drift, correct and continue
 - **3-5 FAIL:** Concerning — structural patterns emerging, identify root cause
-- **6+ FAIL:** Critical — stop and re-read CLAUDE.md before continuing
+- **6+ FAIL:** Critical — stop and re-read AGENTS.md before continuing
 
 ### Required Output
 

@@ -61,4 +61,4 @@ Two reading paths depending on your goal:
 ## Adjacent Navigation
 
 - Runtime hub: [runtime/index.md](../runtime/index.md)
-- Runtime governance: [runtime/CLAUDE.md](../runtime/CLAUDE.md)
+- Runtime governance: [runtime/AGENTS.md](../runtime/AGENTS.md)
